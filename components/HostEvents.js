@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import EventCard from "./EventCard";
-import { Calendar } from "antd";
+import { Calendar, Empty } from "antd";
 const HOSTAPI = "http://localhost:7777/hosts";
 
 export default function HostEvents({ restaurant }) {
@@ -43,17 +43,25 @@ export default function HostEvents({ restaurant }) {
   }
 
   return (
-    <div>
+    <div className="container">
       <Calendar fullscreen={false} onChange={handleChange} />
       {!!eventsToDisplay
-        ? eventsToDisplay.map(event => (
+        ? (eventsToDisplay.length == 0 ? <Empty /> : eventsToDisplay.map(event => (
             <EventCard
               event={event.host}
               eventUser={event.event_user}
               joinUsers={event.join_users}
             />
-          ))
+          )))
         : null}
+      <style jsx>{`
+        .container {
+          height: 100vh;
+          width: 420px;
+          overflow: scroll;
+          padding: 20px
+        }
+      `}</style>
     </div>
   );
 }

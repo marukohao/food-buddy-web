@@ -3,6 +3,9 @@ import React, { useState, useEffect } from "react";
 import Layouts from "../../components/Layouts";
 import HostEvents from "../../components/HostEvents";
 import CreateNewEvent from "../../components/CreateNewEvent";
+import { Card, Button } from "antd";
+
+const { Meta } = Card;
 const RESTAURANTAPI = "http://localhost:7777/restaurants/";
 
 export default function Restaurant() {
@@ -39,20 +42,37 @@ export default function Restaurant() {
 
   return (
     <Layouts>
-      {clicked ? (
-        <CreateNewEvent hiddenCreate={hiddenCreate} createNewHost={createNewHost} restaurant={restaurant} />
-      ) : null}
+      {/* {clicked ? (
+        <CreateNewEvent
+          hiddenCreate={hiddenCreate}
+          createNewHost={createNewHost}
+          restaurant={restaurant}
+        />
+      ) : null} */}
       <div className="container">
-        <div>
-          <img src={restaurant.image_url} />
-          <h4>{restaurant.name}</h4>
-          <h4>{restaurant.category}</h4>
-          <button onClick={handleCreateClick}>create new event</button>
+        <div className="card-button">
+          <Card
+            hoverable
+            style={{ width: "90%" }}
+            cover={<img alt="example" src={restaurant.image_url} />}
+          >
+            <Meta title={restaurant.name} description={restaurant.category} />
+          </Card>
+          <Button style={{ margin: "30px"}} type="primary" onClick={handleCreateClick}>
+            create new event
+          </Button>
         </div>
         <div>
-          <HostEvents restaurant={restaurant} createNew={createNew}/>
+          <HostEvents restaurant={restaurant} createNew={createNew} />
         </div>
       </div>
+      {clicked ? (
+        <CreateNewEvent
+          hiddenCreate={hiddenCreate}
+          createNewHost={createNewHost}
+          restaurant={restaurant}
+        />
+      ) : null}
       <style jsx>{`
         .container {
           display: flex;
@@ -60,6 +80,11 @@ export default function Restaurant() {
           justify-content: space-around;
           align-items: center;
           margin: 20px;
+        }
+        .card-button {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
       `}</style>
     </Layouts>

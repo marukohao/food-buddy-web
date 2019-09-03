@@ -14,7 +14,8 @@ export default function RestaurantCard({restaurant}) {
 
   return (
     <Card
-      style={{ width: 280, margin: "20px", boxShadow: "2px 2px 5px lightgrey"}}
+      hoverable
+      style={{ width: 280, margin: "20px", boxShadow: "2px 2px 5px lightgrey" }}
       cover={
         <img alt="example" src={restaurant.image_url} onClick={handleClick} />
       }
@@ -22,11 +23,7 @@ export default function RestaurantCard({restaurant}) {
       <Meta
         // avatar={<Avatar src={restaurant.image_url} />}
         title={restaurant.name}
-        description={
-          restaurant.category +
-          " " +
-          restaurant.location
-        }
+        description={restaurant.category + " " + restaurant.location}
       />
       <style jsx>{`
         img {
