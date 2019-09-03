@@ -24,9 +24,13 @@ export default function UserEventList() {
       })
         .then(resp => resp.json())
         .then(data => {
+          if(!data.hosts) {
+          } else {
           console.log(data.joins);
           setHostEvents(data.hosts);
-          setJoinedEvents(data.joins);
+          const filterJoins = data.joins.filter(join => join.declined != true)
+          setJoinedEvents(filterJoins);
+          } 
         });
     } catch {}
   }, []);
@@ -42,7 +46,7 @@ export default function UserEventList() {
       <div className="joined-container">
         <h3>Joined list:</h3>
         {joinedEvents.map(event => (
-          <ListCard event={event} isHost={false} />
+          <ListCard event={event} isHost={false} key={event.id}/>
         ))}
       </div>
       <style jsx>{`

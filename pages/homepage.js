@@ -26,7 +26,6 @@ export default function Homepage () {
           textAlign: "center",
           height: "200px",
           lineHeight: "200px",
-          background: "#364d79",
           overflow: "hidden",
           margin: "20px"
         }}

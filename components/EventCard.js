@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Avatar, Button} from "antd";
+import { Card, Avatar, Button, message} from "antd";
 
 const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
@@ -24,7 +24,11 @@ export default function EventCard ({event, eventUser, joinUsers}) {
     })
       .then(res => res.json())
       .then(data => {
-        console.log(data);
+        if (!data.errors) {console.log(data);
+          message.success("Your request has been sent to host");
+        } else {
+          message.error("You have already sent a request");
+        }
       });
   }
 
@@ -46,7 +50,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
           </Button>
         )}
         <p>{joinUsers.map(user => (
-          <Avatar size="small" icon="user" src={user.avatar} key={user}/>
+          <Avatar size="small" icon="user" src={user.avatar} key={user.id}/>
         ))} </p>
       </Card>
     </div>

@@ -16,8 +16,8 @@ export default function ListCard({ event, isHost}) {
       >
         <Meta
           // avatar={<Avatar size={64} icon="user" src={eventUser.avatar} />}
-          // title={eventUser.username}
-          description={event.time + " " + event.date}
+          title={event.restaurant_name}
+          description={event.host.time + " " + event.host.date}
         />
         <p style={{ color: "grey" }}>party number: {event.party}</p>
         {isHost ? null : (event.joined ? null : <p>join request send</p>)}

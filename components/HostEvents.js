@@ -51,6 +51,7 @@ export default function HostEvents({ restaurant }) {
               event={event.host}
               eventUser={event.event_user}
               joinUsers={event.join_users}
+              key={event.host.id}
             />
           )))
         : null}
