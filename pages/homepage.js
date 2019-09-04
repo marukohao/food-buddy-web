@@ -26,6 +26,7 @@ export default function Homepage () {
           textAlign: "center",
           height: "200px",
           lineHeight: "200px",
+          background: "#364d79",
           overflow: "hidden",
           margin: "20px"
         }}
@@ -61,7 +62,7 @@ export default function Homepage () {
       <h2 style={{ margin: "20px" }}>
         Popular restaurants in {profile.location}
       </h2>
-      <MainpageRestaurants />
+      <MainpageRestaurants profile={"profile"}/>
       <h2 style={{ margin: "20px" }}>Recently events in {profile.location}</h2>
       <style jsx>{``}</style>
     </Layouts>

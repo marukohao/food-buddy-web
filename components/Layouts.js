@@ -12,8 +12,9 @@ export default function Layouts (props) {
 
   const handleClick = () => {
     localStorage.setItem("jwt", null);
-    localStorage.setItem("data", null);
     setLogout(true);
+    localStorage.setItem("data", null);
+    // setLogout(true);
   };
 
   const onCollapse = collapsed => {

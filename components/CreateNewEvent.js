@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 // import Calendar from "react-calendar";
 import { Calendar, Input, Button, message } from "antd";
-import Router from "next/router";
+import { connect } from "react-redux";
+import { addEvent } from "../redux/action";
 const HOSTAPI = "http://localhost:7777/hosts";
 
-const CreateNewEvent = ({ restaurant, hiddenCreate, createNewHost }) => {
+const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
   const [date, setDate] = useState();
   const [inValidInput, setInValidInput] = useState(false);
 
@@ -50,6 +51,7 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, createNewHost }) => {
           );
           setInValidInput(true);
         } else {
+          addEvent(data)
           hiddenCreate();
           message.success("A new event has been created");
         }
@@ -127,4 +129,16 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, createNewHost }) => {
   );
 };
 
-export default CreateNewEvent;
+const mapStateToProps = state => {
+  const { events } = state;
+  return { events };
+};
+
+const mapDispatchToProps = {
+  addEvent
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(CreateNewEvent);

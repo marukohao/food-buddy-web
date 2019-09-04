@@ -3,16 +3,19 @@ import Router from "next/router";
 import Link from "next/link";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
 import { Layout } from "antd";
+// import { connect } from "react-redux";
+// import { setUser } from "../redux/actions";
 
-const { Header, Footer, Sider, Content } = Layout;
+// const { Header, Footer, Sider, Content } = Layout;
 
-export default function Login() {
+export default function Login( ) {
   const [failedLogin, setFailedLogin] = useState(false);
   const [user, setUser] = useState({});
 
+  
   const handleSubmit = e => {
     e.preventDefault();
-    console.log('hello')
+    console.log("hello");
     const username = e.target.username.value;
     const password = e.target.password.value;
     fetch("http://localhost:7777/login", {
@@ -31,9 +34,10 @@ export default function Login() {
         if (data.message != undefined) {
           setFailedLogin(true);
         } else {
-          console.log(data.user.id)
+          console.log(data.user.id);
           localStorage.setItem("jwt", data.jwt);
-          localStorage.setItem("data", JSON.stringify(data.user));         
+          localStorage.setItem("data", JSON.stringify(data.user));
+          // setUser(data.user);
           Router.push(`/homepage`);
           setUser(data.user);
         }
@@ -77,3 +81,17 @@ export default function Login() {
     </div>
   );
 }
+
+// const mapStateToProps = state => {
+//   const { user } = state;
+//   return { user };
+// };
+
+// const mapDispatchToProps = {
+//   setUser
+// };
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(Login);

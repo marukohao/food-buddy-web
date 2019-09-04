@@ -8,7 +8,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
   // const [restaurants, setRestaurants] = useState([]);
   const handleAcceptClick = () => {
     if(Number(joinedNumber) < Number(host.party)) {
-    console.log("accept", join, host)
+    // console.log("accept", join, host)
     const joinId = join.join.id;
     fetch(JOINAPI + "/" + joinId, {
       method: "PATCH",
@@ -22,6 +22,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
     })
     .then(resp => resp.json())
     .then(data => {  
+       console.log("accept", data)
         notification['success']({
         message: "you have accepted this request",
         // description:
@@ -33,7 +34,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
   }
 
   const handleDeclineClick = () => {
-    console.log("accept");
+    // console.log("accept");
     const joinId = join.join.id;
     fetch(JOINAPI + "/" + joinId, {
       method: "PATCH",
@@ -47,6 +48,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
     })
       .then(resp => resp.json())
       .then(data => {
+        console.log("declined", data)
         notification["error"]({
           message: "you have declined this request",
           // description:
