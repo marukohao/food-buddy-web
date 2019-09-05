@@ -30,7 +30,8 @@ export default function RestaurantContainer() {
       let newRestaurants = restaurants.filter(restaurant => {
         return (
           restaurant.location.toLowerCase() == input.toLowerCase() ||
-          restaurant.name.toLowerCase().includes(input.toLowerCase())
+          restaurant.name.toLowerCase().includes(input.toLowerCase()) ||
+          restaurant.category.toLowerCase() == input.toLowerCase()
         );
       });
       setRestaurantsToDisplay([...newRestaurants])

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JoinCard from "./JoinCard";
 import Response from "./Response";
-import { Card, Avatar, Button } from "antd";
+import { Card } from "antd";
 const { Meta } = Card;
 
 export default function NotificationList({responseJoins, requestJoins}) {

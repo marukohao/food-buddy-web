@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Layouts from "../components/Layouts";
 import { Carousel, Icon } from "antd";
 import MainpageRestaurants from "../components/MainpageRestaurants"
+import MainpageEvents from "../components/MainpageEvents"
 
 export default function Homepage () {
   const [profile, setProfile] = useState({});
@@ -16,6 +17,9 @@ export default function Homepage () {
 
   return (
     <Layouts style={{ fontFamily: `"Gill Sans", sans-serif` }}>
+      <h4 style={{ margin: "10px", color: "grey" }}>
+        Welcome {profile.username}
+      </h4>
       <h4 style={{ margin: "10px", color: "grey" }}>
         Your location
         <Icon style={{ margin: "5px" }} type="environment" />
@@ -59,11 +63,12 @@ export default function Homepage () {
           </h3>
         </div>
       </Carousel>
-      <h2 style={{ margin: "20px" }}>
+      <h2 style={{ margin: "20px", marginTop: "50px" }}>
         Popular restaurants in {profile.location}
       </h2>
-      <MainpageRestaurants profile={"profile"}/>
+      <MainpageRestaurants profile={"profile"} />
       <h2 style={{ margin: "20px" }}>Recently events in {profile.location}</h2>
+      <MainpageEvents />
       <style jsx>{``}</style>
     </Layouts>
   );

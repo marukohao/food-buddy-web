@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
 import { Form, Icon, Input, Button, Checkbox } from "antd";
-import { Layout } from "antd";
+// import login from "../image/login.jpg"
 // import { connect } from "react-redux";
 // import { setUser } from "../redux/actions";
 
@@ -45,39 +45,73 @@ export default function Login( ) {
   };
 
   return (
-    <div id="login">
-      {failedLogin ? (
-        <p className="login-error">User name doesn't match your password</p>
-      ) : null}
-      <Form onSubmit={handleSubmit}>
-        <Form.Item>
-          <Input
-            name="username"
-            type="text"
-            prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-            placeholder="Username"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
-            name="password"
-            prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-            type="password"
-            placeholder="Password"
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input value="submit" type="submit" />
-        </Form.Item>
-      </Form>
-      <Link href="/signup">
-        <a>Create New User</a>
-      </Link>
-      <style jsx>{`
-        #login {
-          max-width: 300px;
-        }
-      `}</style>
+    <div
+      className="login"
+      style={{
+        height: "100vh",
+        width: "100vw",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundImage:
+          "url(https://images.unsplash.com/photo-1541544741938-0af808871cc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2698&q=80)"
+      }}
+    >
+      <div
+        className="container"
+        style={{
+          width: "500px",
+          padding: "80px",
+          background: "#312a2a",
+          opacity: "0.8"
+        }}
+      >
+        {failedLogin ? (
+          <p style={{ color: "red" }} className="login-error">
+            User name doesn't match your password
+          </p>
+        ) : null}
+        <Form onSubmit={handleSubmit}>
+          <p style={{ color: "white" }}>Please log in:</p>
+          <Form.Item>
+            <Input
+              autoComplete="off"
+              name="username"
+              type="text"
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="Username"
+              style={{ height: "40px" }}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input
+              autoComplete="off"
+              name="password"
+              prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
+              type="password"
+              placeholder="Password"
+              style={{ height: "40px" }}
+            />
+          </Form.Item>
+          <Form.Item>
+            <Input value="submit" type="submit" style={{ height: "40px", cursor: "pointer" }} />
+          </Form.Item>
+        </Form>
+        <Link href="/signup">
+          <a>Create New User</a>
+        </Link>
+        <style jsx>{`
+          .container {
+            // top: 40%;
+            // left: 40%;
+            // max-width: 400px;
+          }
+          input {
+            height: 40px;
+            width: 200px;
+          }
+        `}</style>
+      </div>
     </div>
   );
 }

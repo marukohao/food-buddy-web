@@ -15,12 +15,12 @@ export default function ListCard({ event, isHost}) {
         style={{ width: 350, margin: "20px" }}
       >
         <Meta
-          // avatar={<Avatar size={64} icon="user" src={eventUser.avatar} />}
+          // avatar={<Avatar src={event.restaurant.image_url} size="large" />}
           title={event.restaurant_name}
           description={event.host.time + " " + event.host.date}
         />
-        <p style={{ color: "grey" }}>party number: {event.party}</p>
-        {isHost ? null : (event.joined ? null : <p>join request send</p>)}
+        <p style={{ color: "grey" }}>party number: {event.host.party}</p>
+        {isHost ? null : (event.joined ? null : <p>join request sent</p>)}
         {/* <p>
           {joinUsers.map(user => (
             <Avatar size="small" icon="user" src={user.avatar} key={user} />

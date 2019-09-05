@@ -37,7 +37,7 @@ export default function UserEventList() {
 
   return (
     <div className="container">
-      <div className="host-container">
+      <div className="host-container" style={{marginRight: "40px"}}>
         <h3>Host list:</h3>
         {hostEvents.map(event => (
           <ListCard event={event} isHost />

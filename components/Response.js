@@ -12,9 +12,9 @@ export default function Response({ join, restaurantName, host }) {
       style={{ width: 400, margin: "20px", boxShadow: "2px 2px 5px lightgrey" }}
     >
       {join.joined ? (
-        <p>Your request has been accept</p>
+        <p style={{ color: "green" }} >Your request has been accepted</p>
       ) : (
-        <p>Your request has been declined</p>
+        <p style={{ color: "red" }} >Your request has been declined</p>
       )}
       <Meta
         // avatar={<Avatar src={join.user.avatar} />}

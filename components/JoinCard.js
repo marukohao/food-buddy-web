@@ -5,7 +5,10 @@ const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
 
 export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
-  // const [restaurants, setRestaurants] = useState([]);
+  const [clicked, setClicked] = useState(false);
+  const [accept, setAccept] = useState(false);
+  const [decline, setDecline] = useState(false);
+
   const handleAcceptClick = () => {
     if(Number(joinedNumber) < Number(host.party)) {
     // console.log("accept", join, host)
@@ -22,6 +25,8 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
     })
     .then(resp => resp.json())
     .then(data => {  
+       setClicked(true);
+       setAccept(true);
        console.log("accept", data)
         notification['success']({
         message: "you have accepted this request",
@@ -48,6 +53,8 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
     })
       .then(resp => resp.json())
       .then(data => {
+        setClicked(true);
+        setDecline(true);
         console.log("declined", data)
         notification["error"]({
           message: "you have declined this request",
@@ -72,19 +79,29 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
       />
       <p>party number: {host.party}</p>
       <p>remaining:</p>
-      <Button
-        onClick={handleAcceptClick}
-        style={{ backgroundColor: "green", color: "white", marginRight: "70%" }}
-        shape="round"
-        icon="check"
-      />
+      {accept ? <p>accepted</p> : null}
+      {decline ? <p>declined</p> : null}
+      {clicked ? null : (
+        <div>
+          <Button
+            onClick={handleAcceptClick}
+            style={{
+              backgroundColor: "green",
+              color: "white",
+              marginRight: "70%"
+            }}
+            shape="round"
+            icon="check"
+          />
 
-      <Button
-        onClick={handleDeclineClick}
-        style={{ backgroundColor: "red", color: "white" }}
-        shape="round"
-        icon="close"
-      />
+          <Button
+            onClick={handleDeclineClick}
+            style={{ backgroundColor: "red", color: "white" }}
+            shape="round"
+            icon="close"
+          />
+        </div>
+      )}
 
       <style jsx>{`
         img {
