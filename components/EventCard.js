@@ -8,6 +8,7 @@ const JOINAPI = "http://localhost:7777/joins";
 export default function EventCard ({event, eventUser, joinUsers}) {
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
+  console.log(joinUsers)
   
   const handleClick = () => {
     console.log(jsonObj.id, event.id)
@@ -36,7 +37,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
     <div>
       <Card
         // extra={<a href="#">More</a>}
-        style={{ width: 350, margin: "20px" }}
+        style={{ width: 350, margin: "20px", opacity: "0.85" }}
       >
         <Meta
           avatar={<Avatar size={64} icon="user" src={eventUser.avatar} />}

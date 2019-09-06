@@ -16,8 +16,8 @@ export default function MainpageEventCard({ host }) {
   return (
     <Card
       hoverable
-      title={host.restaurant.name}
-      style={{ width: 280, margin: "20px", boxShadow: "2px 2px 5px lightgrey" }}
+      title={host.hoster.username}
+      style={{ width: "300px", margin: "20px", boxShadow: "2px 2px 5px lightgrey" }}
       onClick={handleClick}
       // cover={
       //   <img alt="example" src={host.restaurant.image_url} onClick={handleClick} />
@@ -25,8 +25,9 @@ export default function MainpageEventCard({ host }) {
     >
       <Meta
         avatar={<Avatar src={host.restaurant.image_url} size="large" />}
-        title={host.hoster.username}
+        title={host.restaurant.name}
         description={host.host.time + " " + host.host.date}
+        style={{ width: "300px" }}
       />
       <style jsx>{`
         img {

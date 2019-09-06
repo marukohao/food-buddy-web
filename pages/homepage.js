@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Layouts from "../components/Layouts";
-import { Carousel, Icon } from "antd";
+import { Carousel, Icon, Input, Form } from "antd";
 import MainpageRestaurants from "../components/MainpageRestaurants"
 import MainpageEvents from "../components/MainpageEvents"
+import UserEventList from "../components/UserEventList";
 
 export default function Homepage () {
   const [profile, setProfile] = useState({});
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -24,6 +26,14 @@ export default function Homepage () {
         Your location
         <Icon style={{ margin: "5px" }} type="environment" />
         {profile.location}
+        {/* <Form>
+          <Input style={{ width: "100px", height: "25px" }} type="text" />
+          <Input
+            style={{ width: "100px", height: "25px" }}
+            type="submit"
+            value="submit"
+          />
+        </Form> */}
       </h4>
       <Carousel
         style={{
@@ -66,9 +76,9 @@ export default function Homepage () {
       <h2 style={{ margin: "20px", marginTop: "50px" }}>
         Popular restaurants in {profile.location}
       </h2>
-      <MainpageRestaurants profile={"profile"} />
+      <MainpageRestaurants profile={profile} />
       <h2 style={{ margin: "20px" }}>Recently events in {profile.location}</h2>
-      <MainpageEvents />
+      <MainpageEvents profile={profile} />
       <style jsx>{``}</style>
     </Layouts>
   );

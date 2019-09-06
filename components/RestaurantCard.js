@@ -23,7 +23,7 @@ export default function RestaurantCard({restaurant}) {
       <Meta
         // avatar={<Avatar src={restaurant.image_url} />}
         title={restaurant.name}
-        description={restaurant.category + " " + restaurant.location}
+        description={restaurant.category + "  📍" + restaurant.location}
       />
       <style jsx>{`
         img {

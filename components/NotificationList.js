@@ -27,14 +27,14 @@ export default function NotificationList({responseJoins, requestJoins}) {
       <div className="request-container">
         <h3>Host list:</h3>
         {requestJoins.map(host => {
-          const joinedNumber = (host.joins.filter(join => join.joined == true)).length;
+          const joinedNumber = host.joins.filter(join => join.joined == true)
+            .length;
           console.log(host.joins.filter(join => join.joined == true), "number");
-          console.log(
-            "check", host
-          );
+          console.log("check", host);
           return host.joins
             .filter(
-              join => join.join.joined == undefined && join.join.declined == undefined
+              join =>
+                join.join.joined == undefined && join.join.declined == undefined
             )
             .map(join => (
               <JoinCard
@@ -61,11 +61,26 @@ export default function NotificationList({responseJoins, requestJoins}) {
       </div>
       <style jsx>{`
         .container {
+          height: 100vh;
+          width: 100vw;
+          background-size: cover;
+          background-image: url(https://images.unsplash.com/photo-1517856497829-3047e3fffae1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
           display: flex;
           flex-direction: row;
           justify-content: space-around;
           align-items: start;
+          // margin: 20px;
+        }
+        .request-container {
           margin: 20px;
+        }
+        .response-container {
+          margin: 20px;
+        }
+        @media (max-width: 480px) {
+          .container {
+            flex-direction: column;
+          }
         }
       `}</style>
     </div>

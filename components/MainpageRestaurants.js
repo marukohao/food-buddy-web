@@ -3,8 +3,8 @@ import RestaurantCard from "./RestaurantCard";
 
 const RESTAURANTAPI = "http://localhost:7777/restaurants";
 
-export default function RestaurantContainer() {
-  const [restaurants, setRestaurants] = useState([]);
+export default function MainpageRestaurants({profile}) {
+  // const [restaurants, setRestaurants] = useState([]);
   const [restaurantsToDisplay, setRestaurantsToDisplay] = useState([]);
 
   useEffect(() => {
@@ -16,10 +16,14 @@ export default function RestaurantContainer() {
     })
       .then(res => res.json())
       .then(data => {
-        setRestaurants(data);
-        setRestaurantsToDisplay([...data]);
+        if(profile.location){
+        console.log(profile)
+        // setRestaurants(data);
+        const restaurants = data.filter(res => res.location.toLowerCase() == profile.location.toLowerCase())
+        setRestaurantsToDisplay(restaurants);
+        }
       });
-  }, []);
+  }, [profile]);
 
   return (
     <div className="outer-container">
@@ -43,9 +47,14 @@ export default function RestaurantContainer() {
           display: flex;
           flex-direction: row;
           justify-content: space-around;
-          overflow: scroll;
+          overflow: auto;
           padding: 10px;
         }
+        // @media (max-width: 480px) {
+        //   .container {
+        //     width: 195%;
+        //   }
+        // }
       `}</style>
     </div>
   );

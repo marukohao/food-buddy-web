@@ -3,10 +3,11 @@ import React, { useState } from "react";
 import { Calendar, Input, Button, message } from "antd";
 import { connect } from "react-redux";
 import { addEvent } from "../redux/action";
+import moment from "moment";
 const HOSTAPI = "http://localhost:7777/hosts";
 
 const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(moment().format("LL"));
   const [inValidInput, setInValidInput] = useState(false);
 
   // const handleChange = date => {
@@ -106,6 +107,7 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
             height: 100vh;
           }
           .container {
+            opacity: 0.85;
             position: fixed;
             left: 40%;
             top: 25%;

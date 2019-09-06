@@ -23,9 +23,9 @@ function HostEvents({ restaurant, events, setEvents }) {
       })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
-          setEvents(data);
-          // setEventsByDate([...data]);
+          console.log("host", data);
+          const availableHosts = data.filter(host => (host.joins.length + 1) < host.host.party)
+          setEvents(availableHosts);
         });
     }
   }, [restaurant]);

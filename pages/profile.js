@@ -17,7 +17,15 @@ export default function Profile() {
   return (
     <Layouts>
       <div className="container">
-        <Card style={{ width: 300, margin: "20px 20px" }}>
+        <Card
+          style={{
+            width: 300,
+            margin: "60px 20px",
+            opacity: "0.8",
+            boxShadow: "5px 5px 5px grey",
+            marginLeft: "-40px"
+          }}
+        >
           <Avatar shape="square" size={64} icon="user" src={profile.avatar} />
           {/* <img src={profile.avatar} /> */}
           <br />
@@ -36,11 +44,21 @@ export default function Profile() {
         <UserEventList />
         <style jsx>{`
           .container {
+            width: 100vw;
+            height: 100vh;
+            background-size: cover;
+            background-image: url(https://images.unsplash.com/photo-1489533119213-66a5cd877091?ixlib=rb-1.2.1&auto=format&fit=crop&w=2678&q=80);
             display: flex;
             flex-direction: row;
-            justify-content: space-around;
-            align-items: center;
-            margin: 20px;
+            justify-content: center;
+            align-items: start;
+            padding-left: -40px;
+          }
+          @media (max-width: 480px) {
+            .container {
+              flex-direction: column;
+              align-items: center;
+            }
           }
         `}</style>
       </div>

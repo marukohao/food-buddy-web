@@ -66,7 +66,12 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
 
   return (
     <Card
-      style={{ width: 400, margin: "20px", boxShadow: "2px 2px 5px lightgrey" }}
+      style={{
+        width: 350,
+        margin: "20px",
+        boxShadow: "2px 2px 5px lightgrey",
+        opacity: "0.7"
+      }}
     >
       <p>
         <Avatar src={join.user.avatar} />

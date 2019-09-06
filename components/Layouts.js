@@ -68,7 +68,7 @@ export default function Layouts (props) {
         </Sider>
         <Layout>
           {/* <Header style={{ background: "white", padding: 0 }} /> */}
-          <Content style={{ margin: "0 16px" }}>
+          <Content style={{ }}>
             {props.children}
             {/* <Breadcrumb style={{ margin: '16px 0' }}>
               <Breadcrumb.Item>User</Breadcrumb.Item>
