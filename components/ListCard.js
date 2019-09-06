@@ -17,15 +17,18 @@ export default function ListCard({ event, isHost }) {
           width: 320,
           margin: "20px",
           opacity: "0.8",
-          boxShadow: "5px 5px 5px grey"
+          boxShadow: "2px 2px 5px grey"
         }}
       >
         <Meta
-          // avatar={<Avatar src={event.restaurant.image_url} size="large" />}
+          avatar={<Avatar src={event.restaurant_image} size="large" />}
           title={event.restaurant_name}
           description={event.host.time + " " + event.host.date}
         />
-        <p style={{ color: "grey" }}>party number: {event.host.party}</p>
+        {/* <p>{event.host.time + " " + event.host.date}</p> */}
+        <p style={{ color: "grey", marginTop: "10px", marginLeft: "60px" }}>
+          party number: {event.host.party}
+        </p>
         {isHost ? (
           event.joined_users.map(user => (
             <Popover

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Avatar, Button, message} from "antd";
+import { Card, Avatar, Button, message, Popover} from "antd";
 
 const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
@@ -37,7 +37,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
     <div>
       <Card
         // extra={<a href="#">More</a>}
-        style={{ width: 350, margin: "20px", opacity: "0.85" }}
+        style={{ width: 350, margin: "20px", opacity: "0.7" }}
       >
         <Meta
           avatar={<Avatar size={64} icon="user" src={eventUser.avatar} />}
@@ -51,7 +51,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
           </Button>
         )}
         <p>{joinUsers.map(user => (
-          <Avatar size="small" icon="user" src={user.avatar} key={user.id}/>
+          <Popover content={user.username} ><Avatar style={{ marginRight: "5px"}} size="small" icon="user" src={user.avatar} key={user.id}/></Popover>
         ))} </p>
       </Card>
     </div>

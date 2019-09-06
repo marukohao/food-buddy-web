@@ -4,39 +4,42 @@ import { Card, Icon, Avatar, Button, notification } from "antd";
 const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
 
-export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
+export default function JoinCard({ join, restaurantName, host, joinedNumber, reRender }) {
   const [clicked, setClicked] = useState(false);
   const [accept, setAccept] = useState(false);
   const [decline, setDecline] = useState(false);
+  console.log(Number(joinedNumber), Number(host.party));
 
   const handleAcceptClick = () => {
-    if(Number(joinedNumber) < Number(host.party)) {
-    // console.log("accept", join, host)
-    const joinId = join.join.id;
-    fetch(JOINAPI + "/" + joinId, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("jwt")}`
-      },
-      body: JSON.stringify({
-        joined: true
+    if (Number(joinedNumber) < Number(host.party)) {
+      // console.log("accept", join, host)
+      const joinId = join.join.id;
+      fetch(JOINAPI + "/" + joinId, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        },
+        body: JSON.stringify({
+          joined: true
+        })
       })
-    })
-    .then(resp => resp.json())
-    .then(data => {  
-       setClicked(true);
-       setAccept(true);
-       console.log("accept", data)
-        notification['success']({
-        message: "you have accepted this request",
-        // description:
-        //   "This is the content of the notification. This is the content of the notification. This is the content of the notification."
-      });
-
-    })
-  }
-  }
+        .then(resp => resp.json())
+        .then(data => {
+          reRender();
+          setClicked(true);
+          setAccept(true);
+          console.log("accept", data);
+          notification["success"]({
+            message: "you have accepted this request"
+          });
+        });
+    }else {
+      notification["warning"]({
+        message: "You have reached the maximum party number"
+      });      
+    }
+  };
 
   const handleDeclineClick = () => {
     // console.log("accept");
@@ -55,14 +58,14 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
       .then(data => {
         setClicked(true);
         setDecline(true);
-        console.log("declined", data)
+        console.log("declined", data);
         notification["error"]({
-          message: "you have declined this request",
+          message: "you have declined this request"
           // description:
           //   "This is the content of the notification. This is the content of the notification. This is the content of the notification."
         });
       });
-  }
+  };
 
   return (
     <Card
@@ -83,7 +86,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber }) {
         description={host.time + " " + host.date}
       />
       <p>party number: {host.party}</p>
-      <p>remaining:</p>
+      <p>remaining: {host.party - joinedNumber}</p>
       {accept ? <p>accepted</p> : null}
       {decline ? <p>declined</p> : null}
       {clicked ? null : (

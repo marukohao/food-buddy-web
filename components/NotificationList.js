@@ -4,9 +4,9 @@ import Response from "./Response";
 import { Card } from "antd";
 const { Meta } = Card;
 
-export default function NotificationList({responseJoins, requestJoins}) {
+export default function NotificationList({responseJoins, requestJoins, reRender}) {
   // let RequestJoins = joins.filter(join => join.join.joined == undefined && join.join.declined == undefined)
-  console.log(responseJoins, requestJoins)
+  // console.log(responseJoins, requestJoins)
   let ResponseJoins = responseJoins.filter(join => join.join.joined == true || join.join.declined == true)
   
   // requestJoins.map(host => {
@@ -27,10 +27,10 @@ export default function NotificationList({responseJoins, requestJoins}) {
       <div className="request-container">
         <h3>Host list:</h3>
         {requestJoins.map(host => {
-          const joinedNumber = host.joins.filter(join => join.joined == true)
-            .length;
-          console.log(host.joins.filter(join => join.joined == true), "number");
-          console.log("check", host);
+          const joinedNumber = host.joins.filter(join => join.join.joined == true)
+            .length + 1;
+          // console.log(host.joins.filter(join => join.join.joined == true).length + 1, "number");
+          // console.log("check", host);
           return host.joins
             .filter(
               join =>
@@ -38,6 +38,8 @@ export default function NotificationList({responseJoins, requestJoins}) {
             )
             .map(join => (
               <JoinCard
+                reRender={reRender}
+                joinedNumber={joinedNumber}
                 host={host.host}
                 restaurantName={host.restaurant_name}
                 join={join}

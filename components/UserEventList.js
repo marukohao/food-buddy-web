@@ -57,7 +57,7 @@ export default function UserEventList() {
               Date.parse(moment())
           )
           .map(event => (
-            <ListCard event={event} isHost />
+            <ListCard event={event} key={event.host.id} isHost />
           ))}
       </div>
       <div className="joined-container">
@@ -69,7 +69,7 @@ export default function UserEventList() {
               Date.parse(moment())
           )
           .map(event => (
-            <ListCard event={event} isHost={false} key={event.id} />
+            <ListCard event={event} isHost={false} key={event.host.id} />
           ))}
         <h3>Past Joined list:</h3>
         {joinedEvents

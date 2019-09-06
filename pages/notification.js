@@ -6,6 +6,7 @@ export default function Notification() {
   const [profile, setProfile] = useState({});
   const [hosts, setHosts] = useState([]);
   const [joins, setJoins] = useState([]);
+  const [render, setRender] = useState(false);
 
   useEffect(() => {
     try {
@@ -42,11 +43,15 @@ export default function Notification() {
         });
 
     } catch {}
-  }, []);
+  }, [render]);
+
+  const reRender = () => {
+    setRender(!render)
+  }
 
   return (
   <Layouts>
-    <NotificationList responseJoins={joins} requestJoins={hosts}/>
+    <NotificationList reRender={reRender} responseJoins={joins} requestJoins={hosts}/>
   </Layouts>
   );
 }

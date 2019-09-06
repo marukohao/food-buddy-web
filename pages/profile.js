@@ -22,7 +22,7 @@ export default function Profile() {
             width: 300,
             margin: "60px 20px",
             opacity: "0.8",
-            boxShadow: "5px 5px 5px grey",
+            boxShadow: "2px 2px 5px grey",
             marginLeft: "-40px"
           }}
         >
@@ -40,6 +40,7 @@ export default function Profile() {
           <Icon style={{ margin: "5px" }} type="idcard" />
           <label>bio</label>
           <h4 style={{ marginLeft: "10px" }}>{profile.bio}</h4>
+          <p>edit</p>
         </Card>
         <UserEventList />
         <style jsx>{`
@@ -47,7 +48,7 @@ export default function Profile() {
             width: 100vw;
             height: 100vh;
             background-size: cover;
-            background-image: url(https://images.unsplash.com/photo-1489533119213-66a5cd877091?ixlib=rb-1.2.1&auto=format&fit=crop&w=2678&q=80);
+            background-image: url(https://images.unsplash.com/photo-1493606278519-11aa9f86e40a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2442&q=80);
             display: flex;
             flex-direction: row;
             justify-content: center;
