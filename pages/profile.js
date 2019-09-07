@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Layouts from "../components/Layouts";
 import UserEventList from "../components/UserEventList";
-import { Avatar, Card, Icon } from "antd";
+import { Avatar, Card, Icon, Modal, Input, Form } from "antd";
+import { responsiveArray } from "antd/lib/_util/responsiveObserve";
 
 export default function Profile() {
   const [profile, setProfile] = useState({});
+  const [visible, setVisible] = useState(false);
+  const [name, setName] = useState("");
+  const [location, setLocation] = useState("");
+  const [bio, setBio] = useState("");
 
   useEffect(() => {
     try {
@@ -13,6 +18,49 @@ export default function Profile() {
       setProfile(jsonObj);
     } catch {}
   }, []);
+
+  const showModal = () => {
+    setVisible(true);
+  };
+
+  const handleOk = e => {
+    e.preventDefault();
+    setVisible(false);
+    fetch("http://localhost:7777/users" + "/" + profile.id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("jwt")}`
+      },
+      body: JSON.stringify({
+        bio: bio,
+        location: location,
+        username: name
+      })
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+      localStorage.setItem("data", JSON.stringify(data))
+      setProfile(data);
+    })
+  };
+
+  const handleCancel = e => {
+    setVisible(false);
+  };
+
+  const handleNameChange = (e) => {
+    setName(e.target.value);
+  }
+
+  const handleLocationChange = (e) => {
+    setLocation(e.target.value);
+  }
+
+  const handleBioChange = (e) => {
+    setBio(e.target.value)
+  }
 
   return (
     <Layouts>
@@ -40,7 +88,45 @@ export default function Profile() {
           <Icon style={{ margin: "5px" }} type="idcard" />
           <label>bio</label>
           <h4 style={{ marginLeft: "10px" }}>{profile.bio}</h4>
-          <p>edit</p>
+          <br />
+          <p onClick={showModal} style={{ cursor: "pointer" }}>
+            {" "}
+            <Icon style={{ margin: "5px" }} type="edit" />
+            edit
+          </p>
+          <Modal
+            title="Edit your profile"
+            visible={visible}
+            onOk={handleOk}
+            onCancel={handleCancel}
+            okText="Submit"
+            closable={false}
+          >
+            <Input
+              type="text"
+              style={{ width: "220px", margin: "10px" }}
+              placeholder="name"
+              name="name"
+              id="name"
+              onChange={handleNameChange}
+            />
+            <Input
+              type="text"
+              style={{ width: "220px", margin: "10px" }}
+              placeholder="location"
+              name="location"
+              id="location"
+              onChange={handleLocationChange}
+            />
+            <Input
+              type="text"
+              style={{ width: "220px", margin: "10px" }}
+              placeholder="bio"
+              name="bio"
+              id="bio"
+              onChange={handleBioChange}
+            />
+          </Modal>
         </Card>
         <UserEventList />
         <style jsx>{`

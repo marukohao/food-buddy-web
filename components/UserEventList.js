@@ -8,7 +8,7 @@ export default function UserEventList() {
   const [profile, setProfile] = useState({});
   const [hostEvents, setHostEvents] = useState([]);
   const [joinedEvents, setJoinedEvents] = useState([]);
-  console.log("time", Date.parse(moment()));
+  // console.log("time", Date.parse(moment()));
   useEffect(() => {
     try {
       let json = localStorage.getItem("data");
@@ -27,7 +27,7 @@ export default function UserEventList() {
         .then(data => {
           if(!data.hosts) {
           } else {
-          console.log("joins", data.joins);
+          // console.log("joins", data.joins);
           setHostEvents(data.hosts);
           const filterJoins = data.joins.filter(join => join.declined != true)
           setJoinedEvents(filterJoins);
