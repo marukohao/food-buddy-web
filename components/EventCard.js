@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Card, Avatar, Button, message, Popover} from "antd";
+import Router from "next/router";
 
 const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
@@ -8,6 +9,7 @@ const JOINAPI = "http://localhost:7777/joins";
 export default function EventCard ({event, eventUser, joinUsers}) {
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
+  let Id = eventUser.id;
   console.log(joinUsers)
   
   const handleClick = () => {
@@ -33,6 +35,14 @@ export default function EventCard ({event, eventUser, joinUsers}) {
       });
   }
 
+  const handleUserClick = (user) => {
+    Router.push(`/users/${user.id}`);
+  }
+
+  const handleHostClick = (id) => {
+    Router.push(`/users/${id}`);
+  }
+
   return (
     <div>
       <Card
@@ -40,7 +50,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
         style={{ width: 350, margin: "20px", opacity: "0.7" }}
       >
         <Meta
-          avatar={<Avatar size={64} icon="user" src={eventUser.avatar} />}
+          avatar={<Avatar onClick={() => handleHostClick(eventUser.id)} size={64} icon="user" src={eventUser.avatar} style={{ cursor: "pointer" }}/>}
           title={eventUser.username}
           description={event.time + " " + event.date}
         />
@@ -51,7 +61,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
           </Button>
         )}
         <p>{joinUsers.map(user => (
-          <Popover content={user.username} ><Avatar style={{ marginRight: "5px"}} size="small" icon="user" src={user.avatar} key={user.id}/></Popover>
+          <Popover content={user.username} ><Avatar onClick={() => handleUserClick(user) } style={{ marginRight: "5px", cursor: "pointer"}} size="small" icon="user" src={user.avatar} key={user.id}/></Popover>
         ))} </p>
       </Card>
     </div>

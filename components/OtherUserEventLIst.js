@@ -1,41 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import ListCard from "./ListCard";
-import { Card, Avatar, Button } from "antd";
+import { Card } from "antd";
 import moment from "moment";
 const { Meta } = Card;
 
-export default function UserEventList() {
-  const [profile, setProfile] = useState({});
-  const [hostEvents, setHostEvents] = useState([]);
-  const [joinedEvents, setJoinedEvents] = useState([]);
-  // console.log("time", Date.parse(moment()));
-  useEffect(() => {
-    try {
-      let json = localStorage.getItem("data");
-      let jsonObj = JSON.parse(json);
-      setProfile(jsonObj);
+export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
 
-      fetch(`http://localhost:7777/users/${jsonObj.id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          // userid: jsonObj.id,
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`
-        }
-      })
-        .then(resp => resp.json())
-        .then(data => {
-          if(!data.hosts) {
-          } else {
-          // console.log("joins", data.joins);
-          setHostEvents(data.hosts);
-          const filterJoins = data.joins.filter(join => join.declined != true)
-          setJoinedEvents(filterJoins);
-          } 
-        });
-    } catch {}
-  }, []);
-  
   return (
     <div className="container">
       <div className="host-container" style={{ marginRight: "40px" }}>
@@ -57,7 +27,7 @@ export default function UserEventList() {
               Date.parse(moment())
           )
           .map(event => (
-            <ListCard event={event} key={event.host.id} isHost />
+            <ListCard event={event} key={event.host.id} user={user} isHost />
           ))}
       </div>
       <div className="joined-container">
@@ -69,7 +39,12 @@ export default function UserEventList() {
               Date.parse(moment())
           )
           .map(event => (
-            <ListCard event={event} isHost={false} key={event.host.id} />
+            <ListCard
+              event={event}
+              isHost={false}
+              user={user}
+              key={event.host.id}
+            />
           ))}
         <h3>Past Joined list:</h3>
         {joinedEvents
@@ -110,7 +85,3 @@ export default function UserEventList() {
     </div>
   );
 }
-
-// {
-//   event.joined ? <p>joined</p> : <p>join request send</p>;
-// }

@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Card, Avatar, Button, Popover } from "antd";
-import {moment} from "moment";
+import Router from "next/router";
 
 const { Meta } = Card;
 
-export default function ListCard({ event, isHost }) {
+export default function ListCard({ event, isHost  }) {
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
+
+  const handleClick = (user) => {
+    Router.push(`/users/${user.id}`);
+  }
 
   return (
     <div>
@@ -37,15 +41,16 @@ export default function ListCard({ event, isHost }) {
               trigger="hover"
             >
               <Avatar
-                style={{ marginRight: "5px" }}
+                style={{ marginRight: "5px", cursor: "pointer"}}
                 size="small"
                 icon="user"
                 src={user.avatar}
+                onClick={() => handleClick(user)}
               />
             </Popover>
           ))
         ) : event.joined ? null : (
-          <p>join request sent</p>
+          <p style={{color: "orange"}}>join request sent</p>
         )}
         {/* <p>
           {joinUsers.map(user => (
