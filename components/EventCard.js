@@ -46,7 +46,6 @@ export default function EventCard ({event, eventUser, joinUsers}) {
   return (
     <div>
       <Card
-        // extra={<a href="#">More</a>}
         style={{ width: 350, margin: "20px", opacity: "0.7" }}
       >
         <Meta

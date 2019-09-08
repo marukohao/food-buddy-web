@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Icon, Avatar, Button, notification } from "antd";
+import { Card, Avatar, Button, notification } from "antd";
 
 const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
@@ -8,11 +8,9 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
   const [clicked, setClicked] = useState(false);
   const [accept, setAccept] = useState(false);
   const [decline, setDecline] = useState(false);
-  console.log(Number(joinedNumber), Number(host.party));
 
   const handleAcceptClick = () => {
     if (Number(joinedNumber) < Number(host.party)) {
-      // console.log("accept", join, host)
       const joinId = join.join.id;
       fetch(JOINAPI + "/" + joinId, {
         method: "PATCH",
@@ -42,7 +40,6 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
   };
 
   const handleDeclineClick = () => {
-    // console.log("accept");
     const joinId = join.join.id;
     fetch(JOINAPI + "/" + joinId, {
       method: "PATCH",
@@ -58,7 +55,6 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
       .then(data => {
         setClicked(true);
         setDecline(true);
-        console.log("declined", data);
         notification["error"]({
           message: "you have declined this request"
           // description:
@@ -81,7 +77,6 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
         {join.user.username} requests to join
       </p>
       <Meta
-        // avatar={<Avatar src={join.user.avatar} />}
         title={restaurantName}
         description={host.time + " " + host.date}
       />

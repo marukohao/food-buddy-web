@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import Calendar from "react-calendar";
 import { Calendar, Input, Button, message, Drawer } from "antd";
 import { connect } from "react-redux";
 import { addEvent } from "../redux/action";
@@ -9,11 +8,6 @@ const HOSTAPI = "http://localhost:7777/hosts";
 const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
   const [date, setDate] = useState(moment().format("LL"));
   const [inValidInput, setInValidInput] = useState(false);
-
-  // const handleChange = date => {
-  //   setDate(date);
-  //   console.log(date);
-  // };
 
   const onChange = value => {
     console.log(value.format("LL"));

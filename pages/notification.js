@@ -38,7 +38,6 @@ export default function Notification() {
       })
         .then(resp => resp.json())
         .then(data => {
-          // console.log(data)
           setJoins(data);
         });
 

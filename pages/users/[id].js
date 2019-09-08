@@ -8,7 +8,7 @@ import { Avatar, Card, Icon } from "antd";
 const USERAPI = "http://localhost:7777/users/";
 
 export default function Users() {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState("");
   const [hostEvents, setHostEvents] = useState([]);
   const [joinedEvents, setJoinedEvents] = useState([]);
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function Users() {
     }
   }, [router]);
 
-
+ if(profile){
   return (
     <Layouts>
       <div className="container">
@@ -53,7 +53,6 @@ export default function Users() {
           }}
         >
           <Avatar shape="square" size={64} icon="user" src={profile.avatar} />
-          {/* <img src={profile.avatar} /> */}
           <br />
           <h4 style={{ marginLeft: "10px", marginTop: "10px" }}>
             {profile.username}
@@ -91,5 +90,8 @@ export default function Users() {
       </div>
     </Layouts>
   );
+        } else {
+          return <div></div>
+        }
 }
 

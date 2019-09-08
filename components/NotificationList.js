@@ -1,34 +1,20 @@
 import React, { useState, useEffect } from "react";
 import JoinCard from "./JoinCard";
 import Response from "./Response";
-import { Card } from "antd";
+import { Card, Empty } from "antd";
 const { Meta } = Card;
 
 export default function NotificationList({responseJoins, requestJoins, reRender}) {
-  // let RequestJoins = joins.filter(join => join.join.joined == undefined && join.join.declined == undefined)
-  // console.log(responseJoins, requestJoins)
   let ResponseJoins = responseJoins.filter(join => join.join.joined == true || join.join.declined == true)
   
-  // requestJoins.map(host => {
-  //   return host.joins
-  //     .filter(join => join.joined == undefined && join.declined == undefined)
-  //     .map(join => (
-  //       <JoinCard
-  //         host={host.host}
-  //         restaurantName={host.restaurant_name}
-  //         join={join}
-  //         key={join.join.id}
-  //       />
-  //     ));
-  // })
   
   return (
     <div className="container">
       <div className="request-container">
         <h3>Host list:</h3>
         {requestJoins.map(host => {
-          const joinedNumber = host.joins.filter(join => join.join.joined == true)
-            .length + 1;
+          const joinedNumber =
+            host.joins.filter(join => join.join.joined == true).length + 1;
           // console.log(host.joins.filter(join => join.join.joined == true).length + 1, "number");
           // console.log("check", host);
           return host.joins
@@ -78,6 +64,9 @@ export default function NotificationList({responseJoins, requestJoins, reRender}
         }
         .response-container {
           margin: 20px;
+        }
+        h3 {
+          color: #b19797;
         }
         @media (max-width: 480px) {
           .container {

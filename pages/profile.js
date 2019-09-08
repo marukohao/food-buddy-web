@@ -5,7 +5,7 @@ import { Avatar, Card, Icon, Modal, Input, Form } from "antd";
 import { responsiveArray } from "antd/lib/_util/responsiveObserve";
 
 export default function Profile() {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState("");
   const [visible, setVisible] = useState(false);
   const [name, setName] = useState("");
   const [location, setLocation] = useState("");
@@ -38,117 +38,120 @@ export default function Profile() {
         username: name
       })
     })
-    .then(resp => resp.json())
-    .then(data => {
-      console.log(data);
-      localStorage.setItem("data", JSON.stringify(data))
-      setProfile(data);
-    })
+      .then(resp => resp.json())
+      .then(data => {
+        localStorage.setItem("data", JSON.stringify(data));
+        setProfile(data);
+      });
   };
 
   const handleCancel = e => {
     setVisible(false);
   };
 
-  const handleNameChange = (e) => {
+  const handleNameChange = e => {
     setName(e.target.value);
-  }
+  };
 
-  const handleLocationChange = (e) => {
+  const handleLocationChange = e => {
     setLocation(e.target.value);
-  }
+  };
 
-  const handleBioChange = (e) => {
-    setBio(e.target.value)
-  }
+  const handleBioChange = e => {
+    setBio(e.target.value);
+  };
 
-  return (
-    <Layouts>
-      <div className="container">
-        <Card
-          style={{
-            width: 300,
-            margin: "60px 20px",
-            opacity: "0.8",
-            boxShadow: "2px 2px 5px grey",
-            marginLeft: "-40px"
-          }}
-        >
-          <Avatar shape="square" size={64} icon="user" src={profile.avatar} />
-          {/* <img src={profile.avatar} /> */}
-          <br />
-          <h4 style={{ marginLeft: "10px", marginTop: "10px" }}>
-            {profile.username}
-          </h4>
-          <br />
-          <Icon style={{ margin: "5px" }} type="environment" />
-          <label>location</label>
-          <h4 style={{ marginLeft: "10px" }}>{profile.location}</h4>
-          <br />
-          <Icon style={{ margin: "5px" }} type="idcard" />
-          <label>bio</label>
-          <h4 style={{ marginLeft: "10px" }}>{profile.bio}</h4>
-          <br />
-          <p onClick={showModal} style={{ cursor: "pointer" }}>
-            {" "}
-            <Icon style={{ margin: "5px" }} type="edit" />
-            edit
-          </p>
-          <Modal
-            title="Edit your profile"
-            visible={visible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            okText="Submit"
-            closable={false}
+  if (profile) {
+    return (
+      <Layouts>
+        <div className="container">
+          <Card
+            style={{
+              width: 300,
+              margin: "60px 20px",
+              opacity: "0.8",
+              boxShadow: "2px 2px 5px grey",
+              marginLeft: "-40px"
+            }}
           >
-            <Input
-              type="text"
-              style={{ width: "220px", margin: "10px" }}
-              placeholder="name"
-              name="name"
-              id="name"
-              onChange={handleNameChange}
-            />
-            <Input
-              type="text"
-              style={{ width: "220px", margin: "10px" }}
-              placeholder="location"
-              name="location"
-              id="location"
-              onChange={handleLocationChange}
-            />
-            <Input
-              type="text"
-              style={{ width: "220px", margin: "10px" }}
-              placeholder="bio"
-              name="bio"
-              id="bio"
-              onChange={handleBioChange}
-            />
-          </Modal>
-        </Card>
-        <UserEventList />
-        <style jsx>{`
-          .container {
-            width: 100vw;
-            height: 100vh;
-            background-size: cover;
-            background-image: url(https://images.unsplash.com/photo-1493606278519-11aa9f86e40a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2442&q=80);
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: start;
-            padding-left: -40px;
-          }
-          @media (max-width: 480px) {
+            <Avatar shape="square" size={64} icon="user" src={profile.avatar} />
+            {/* <img src={profile.avatar} /> */}
+            <br />
+            <h4 style={{ marginLeft: "10px", marginTop: "10px" }}>
+              {profile.username}
+            </h4>
+            <br />
+            <Icon style={{ margin: "5px" }} type="environment" />
+            <label>location</label>
+            <h4 style={{ marginLeft: "10px" }}>{profile.location}</h4>
+            <br />
+            <Icon style={{ margin: "5px" }} type="idcard" />
+            <label>bio</label>
+            <h4 style={{ marginLeft: "10px" }}>{profile.bio}</h4>
+            <br />
+            <p onClick={showModal} style={{ cursor: "pointer" }}>
+              {" "}
+              <Icon style={{ margin: "5px" }} type="edit" />
+              edit
+            </p>
+            <Modal
+              title="Edit your profile"
+              visible={visible}
+              onOk={handleOk}
+              onCancel={handleCancel}
+              okText="Submit"
+              closable={false}
+            >
+              <Input
+                type="text"
+                style={{ width: "220px", margin: "10px" }}
+                placeholder="name"
+                name="name"
+                id="name"
+                onChange={handleNameChange}
+              />
+              <Input
+                type="text"
+                style={{ width: "220px", margin: "10px" }}
+                placeholder="location"
+                name="location"
+                id="location"
+                onChange={handleLocationChange}
+              />
+              <Input
+                type="text"
+                style={{ width: "220px", margin: "10px" }}
+                placeholder="bio"
+                name="bio"
+                id="bio"
+                onChange={handleBioChange}
+              />
+            </Modal>
+          </Card>
+          <UserEventList />
+          <style jsx>{`
             .container {
-              flex-direction: column;
-              align-items: center;
+              width: 100vw;
+              height: 100vh;
+              background-size: cover;
+              background-image: url(https://images.unsplash.com/photo-1493606278519-11aa9f86e40a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2442&q=80);
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: start;
+              padding-left: -40px;
             }
-          }
-        `}</style>
-      </div>
-    </Layouts>
-  );
+            @media (max-width: 480px) {
+              .container {
+                flex-direction: column;
+                align-items: center;
+              }
+            }
+          `}</style>
+        </div>
+      </Layouts>
+    );
+  } else {
+    return <div></div>;
+  }
 }

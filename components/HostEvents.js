@@ -6,9 +6,8 @@ import { setEvents } from "../redux/action";
 const HOSTAPI = "http://localhost:7777/hosts";
 
 function HostEvents({ restaurant, events, setEvents }) {
-  // const [events, setEvents] = useState([]);
   const [date, setDate] = useState();
-  // const [eventsByDate, setEventsByDate] = useState([]);
+
 
   useEffect(() => {
     if (restaurant) {
@@ -30,11 +29,9 @@ function HostEvents({ restaurant, events, setEvents }) {
     }
   }, [restaurant]);
   console.log("check", events);
-  // console.log("restaurant", restaurant);
   const handleChange = value => {
     const selectDate = value.format("LL");
     setDate(selectDate);
-    // setEventsByDate([...events]);
   };
 
   let eventsToDisplay = events;

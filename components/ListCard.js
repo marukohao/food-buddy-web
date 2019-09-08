@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Card, Avatar, Button, Popover } from "antd";
+import { Card, Avatar, Popover } from "antd";
 import Router from "next/router";
 
 const { Meta } = Card;
@@ -15,7 +15,6 @@ export default function ListCard({ event, isHost  }) {
   return (
     <div>
       <Card
-        // extra={<a href="#">More</a>}
         className="card"
         style={{
           width: 320,
@@ -39,6 +38,7 @@ export default function ListCard({ event, isHost  }) {
               style={{ opcity: "0.5" }}
               content={user.username}
               trigger="hover"
+              key={user.id}
             >
               <Avatar
                 style={{ marginRight: "5px", cursor: "pointer"}}

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import Router from "next/router";
-import { Card, Icon, Avatar } from "antd";
-// import { url } from "inspector";
+import { Card, Avatar } from "antd";
 
 const { Meta } = Card;
 
 export default function MainpageEventCard({ host }) {
-  // const [restaurants, setRestaurants] = useState([]);
 
   const handleClick = () => {
     Router.push(`/restaurant/${host.restaurant.id}`);

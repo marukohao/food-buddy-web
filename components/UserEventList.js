@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListCard from "./ListCard";
-import { Card, Avatar, Button } from "antd";
+import { Card, Empty } from "antd";
 import moment from "moment";
 const { Meta } = Card;
 
@@ -25,71 +25,103 @@ export default function UserEventList() {
       })
         .then(resp => resp.json())
         .then(data => {
-          if(!data.hosts) {
+          if (!data.hosts) {
           } else {
-          // console.log("joins", data.joins);
-          setHostEvents(data.hosts);
-          const filterJoins = data.joins.filter(join => join.declined != true)
-          setJoinedEvents(filterJoins);
-          } 
+            // console.log("joins", data.joins);
+            setHostEvents(data.hosts);
+            const filterJoins = data.joins.filter(
+              join => join.declined != true
+            );
+            setJoinedEvents(filterJoins);
+          }
         });
     } catch {}
   }, []);
-  
+
   return (
     <div className="container">
       <div className="host-container" style={{ marginRight: "40px" }}>
         <h3>Upcoming Host list:</h3>
-        {hostEvents
-          .filter(
-            event =>
-              Date.parse(event.host.date + " " + event.host.time) >=
-              Date.parse(moment())
-          )
-          .map(event => (
-            <ListCard event={event} isHost />
-          ))}
+        {hostEvents.filter(
+          event =>
+            Date.parse(event.host.date + " " + event.host.time) >=
+            Date.parse(moment())
+        ).length == 0 ? (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        ) : (
+          hostEvents
+            .filter(
+              event =>
+                Date.parse(event.host.date + " " + event.host.time) >=
+                Date.parse(moment())
+            )
+            .map(event => <ListCard event={event} key={event.host.id} isHost />)
+        )}
         <h3>Past Host list:</h3>
-        {hostEvents
-          .filter(
-            event =>
-              Date.parse(event.host.date + " " + event.host.time) <
-              Date.parse(moment())
-          )
-          .map(event => (
-            <ListCard event={event} key={event.host.id} isHost />
-          ))}
+        {hostEvents.filter(
+          event =>
+            Date.parse(event.host.date + " " + event.host.time) <
+            Date.parse(moment())
+        ).length == 0 ? (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        ) : (
+          hostEvents
+            .filter(
+              event =>
+                Date.parse(event.host.date + " " + event.host.time) <
+                Date.parse(moment())
+            )
+            .map(event => <ListCard event={event} key={event.host.id} isHost />)
+        )}
       </div>
       <div className="joined-container">
         <h3>Upcoming Joined list:</h3>
-        {joinedEvents
-          .filter(
-            event =>
-              Date.parse(event.host.date + " " + event.host.time) >=
-              Date.parse(moment())
-          )
-          .map(event => (
-            <ListCard event={event} isHost={false} key={event.host.id} />
-          ))}
+        {joinedEvents.filter(
+          event =>
+            Date.parse(event.host.date + " " + event.host.time) >=
+            Date.parse(moment())
+        ).length == 0 ? (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        ) : (
+          joinedEvents
+            .filter(
+              event =>
+                Date.parse(event.host.date + " " + event.host.time) >=
+                Date.parse(moment())
+            )
+            .map(event => (
+              <ListCard event={event} isHost={false} key={event.host.id} />
+            ))
+        )}
         <h3>Past Joined list:</h3>
-        {joinedEvents
-          .filter(
-            event =>
-              Date.parse(event.host.date + " " + event.host.time) <
-              Date.parse(moment())
-          )
-          .map(event => (
-            <ListCard event={event} isHost={false} key={event.id} />
-          ))}
+        {joinedEvents.filter(
+          event =>
+            Date.parse(event.host.date + " " + event.host.time) <
+            Date.parse(moment())
+        ).length == 0 ? (
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+        ) : (
+          joinedEvents
+            .filter(
+              event =>
+                Date.parse(event.host.date + " " + event.host.time) <
+                Date.parse(moment())
+            )
+            .map(event => (
+              <ListCard event={event} isHost={false} key={event.host.id} />
+            ))
+        )}
       </div>
       <style jsx>{`
         .host-container {
           height: 100vh;
           overflow: scroll;
+          width: 400px;
         }
         .joined-container {
           height: 100vh;
           overflow: scroll;
+          width: 400px;
         }
         .container {
           display: flex;

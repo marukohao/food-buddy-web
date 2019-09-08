@@ -7,7 +7,6 @@ export default function Login() {
   const [src, setSrc] = useState("");
   const [userAlreadyExists, setUserAlreadyExists] = useState(false);
   const [preview, setPreview] = useState(null);
-  // const [user, setUser] = userState('');
 
   const onClose = () => {
     setPreview(null);

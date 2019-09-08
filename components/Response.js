@@ -4,7 +4,6 @@ import { Card, Icon, Avatar, Button } from "antd";
 const { Meta } = Card;
 
 export default function Response({ join, restaurantName, host }) {
-  // const [restaurants, setRestaurants] = useState([]);
 
 
   return (

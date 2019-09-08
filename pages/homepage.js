@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from "react";
 import Layouts from "../components/Layouts";
-import { Carousel, Icon, Input, Form } from "antd";
-import MainpageRestaurants from "../components/MainpageRestaurants"
-import MainpageEvents from "../components/MainpageEvents"
-import UserEventList from "../components/UserEventList";
+import { Carousel, Icon, Input } from "antd";
+import MainpageRestaurants from "../components/MainpageRestaurants";
+import MainpageEvents from "../components/MainpageEvents";
 
-export default function Homepage () {
-  const [profile, setProfile] = useState({});
+const { Search } = Input;
+
+const CarouselTile = ({ url }) => (
+  <div
+    className="backgroud"
+    style={{
+      background: `url("${url}")`,
+      height: "200px"
+    }}
+  ></div>
+);
+
+export default function Homepage() {
+  const [profile, setProfile] = useState(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -17,6 +28,14 @@ export default function Homepage () {
     } catch {}
   }, []);
 
+  if (!profile) {
+    return null;
+  }
+
+  const handleSearch = value => {
+    console.log(value);
+  };
+
   return (
     <Layouts style={{ fontFamily: `"Gill Sans", sans-serif` }}>
       <h4 style={{ margin: "10px", color: "grey" }}>
@@ -26,15 +45,12 @@ export default function Homepage () {
         Your location
         <Icon style={{ margin: "5px" }} type="environment" />
         {profile.location}
-        {/* <Form>
-          <Input style={{ width: "100px", height: "25px" }} type="text" />
-          <Input
-            style={{ width: "100px", height: "25px" }}
-            type="submit"
-            value="submit"
-          />
-        </Form> */}
       </h4>
+      <Search
+        placeholder="search user"
+        onSearch={value => handleSearch(value)}
+        style={{ width: 200 }}
+      />
       <Carousel
         style={{
           textAlign: "center",
@@ -46,32 +62,8 @@ export default function Homepage () {
         }}
         autoplay
       >
-        <div
-          style={{
-            backgroundImage: `url("https://www.ennisfoodfestival.com/wp-content/uploads/2017/08/Food-Header.jpg")`
-          }}
-        >
-          <h3
-            style={{
-              backgroundImage: `url("https://www.ennisfoodfestival.com/wp-content/uploads/2017/08/Food-Header.jpg")`
-            }}
-          >
-            1
-          </h3>
-        </div>
-        <div
-          style={{
-            backgroundImage: `url("https://eatpolska.com/wp-content/uploads/2017/10/new_fdt_header.jpg")`
-          }}
-        >
-          <h3
-            style={{
-              backgroundImage: `url("https://eatpolska.com/wp-content/uploads/2017/10/new_fdt_header.jpg")`
-            }}
-          >
-            2
-          </h3>
-        </div>
+        <CarouselTile url="https://www.ennisfoodfestival.com/wp-content/uploads/2017/08/Food-Header.jpg" />
+        <CarouselTile url="https://eatpolska.com/wp-content/uploads/2017/10/new_fdt_header.jpg" />
       </Carousel>
       <h2 style={{ margin: "20px", marginTop: "50px" }}>
         Popular restaurants in {profile.location}
@@ -83,8 +75,3 @@ export default function Homepage () {
     </Layouts>
   );
 }
-
-
-
-
-
