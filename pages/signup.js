@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import Avatar from "../components/Avatar"
+import { Form, Icon, Input } from "antd";
 
 export default function Login() {
   const [src, setSrc] = useState("");
   const [userAlreadyExists, setUserAlreadyExists] = useState(false);
   const [preview, setPreview] = useState(null);
+  const [avatarUrl, setAvatarUrl] = useState("");
 
   const onClose = () => {
     setPreview(null);
@@ -15,6 +17,11 @@ export default function Login() {
   const onCrop = preview => {
     setPreview(preview);
   };
+
+  const getAvatar = (imageUrl) => {
+    // console.log("get", imageUrl)
+    setAvatarUrl(imageUrl);
+  }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -32,8 +39,7 @@ export default function Login() {
       body: JSON.stringify({
         username: name,
         password: password,
-        avatar:
-          "https://pic1.zhimg.com/v2-fda399250493e674f2152c581490d6eb_1200x500.jpg",
+        avatar: avatarUrl,
         location: location,
         bio: bio
       })
@@ -79,7 +85,7 @@ export default function Login() {
           </p>
         ) : null}
         <Form
-          style={{ color: "white" }}
+          style={{ color: "white"}}
           id="signup-form"
           onSubmit={handleSubmit}
         >
@@ -133,7 +139,8 @@ export default function Login() {
             />
           </Form.Item>
           <Form.Item>
-            <Input
+            <Avatar getAvatar={getAvatar} style={{ marginLeft: "35%"}}/>
+            {/* <Input
               autoComplete="off"
               className="input-box"
               type="text"
@@ -143,7 +150,7 @@ export default function Login() {
                 <Icon type="idcard" style={{ color: "rgba(0,0,0,.25)" }} />
               }
               style={{ height: "40px" }}
-            />
+            /> */}
           </Form.Item>
           <Form.Item>
             <Input

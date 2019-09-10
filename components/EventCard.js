@@ -10,10 +10,8 @@ export default function EventCard ({event, eventUser, joinUsers}) {
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
   let Id = eventUser.id;
-  console.log(joinUsers)
   
   const handleClick = () => {
-    console.log(jsonObj.id, event.id)
     fetch(JOINAPI, {
       method: "POST",
       headers: {
@@ -49,7 +47,7 @@ export default function EventCard ({event, eventUser, joinUsers}) {
         style={{ width: 350, margin: "20px", opacity: "0.7" }}
       >
         <Meta
-          avatar={<Avatar onClick={() => handleHostClick(eventUser.id)} size={64} icon="user" src={eventUser.avatar} style={{ cursor: "pointer" }}/>}
+          avatar={<Avatar onClick={() => handleHostClick(eventUser.id)} size={64} icon="user" src={eventUser.avatar} style={{ cursor: "pointer", opacity: "1" }}/>}
           title={eventUser.username}
           description={event.time + " " + event.date}
         />

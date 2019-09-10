@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListCard from "./ListCard";
-import { Card, Empty } from "antd";
+import { Card, Empty, Button } from "antd";
 import moment from "moment";
 const { Meta } = Card;
 
@@ -8,6 +8,7 @@ export default function UserEventList() {
   const [profile, setProfile] = useState({});
   const [hostEvents, setHostEvents] = useState([]);
   const [joinedEvents, setJoinedEvents] = useState([]);
+  const [render, setRender] = useState(false);
   // console.log("time", Date.parse(moment()));
   useEffect(() => {
     try {
@@ -36,7 +37,11 @@ export default function UserEventList() {
           }
         });
     } catch {}
-  }, []);
+  }, [render]);
+
+  const reRender = () => {
+    setRender(!render);
+  }
 
   return (
     <div className="container">
@@ -55,7 +60,15 @@ export default function UserEventList() {
                 Date.parse(event.host.date + " " + event.host.time) >=
                 Date.parse(moment())
             )
-            .map(event => <ListCard event={event} key={event.host.id} isHost />)
+            .map(event => (
+              <ListCard
+                event={event}
+                key={event.host.id}
+                isHost
+                upcomingHost
+                reRender={reRender}
+              />
+            ))
         )}
         <h3>Past Host list:</h3>
         {hostEvents.filter(
@@ -71,7 +84,15 @@ export default function UserEventList() {
                 Date.parse(event.host.date + " " + event.host.time) <
                 Date.parse(moment())
             )
-            .map(event => <ListCard event={event} key={event.host.id} isHost />)
+            .map(event => (
+              <ListCard
+                event={event}
+                key={event.host.id}
+                isHost
+                upcomingHost={false}
+                reRender={reRender}
+              />
+            ))
         )}
       </div>
       <div className="joined-container">
@@ -90,7 +111,13 @@ export default function UserEventList() {
                 Date.parse(moment())
             )
             .map(event => (
-              <ListCard event={event} isHost={false} key={event.host.id} />
+              <ListCard
+                event={event}
+                isHost={false}
+                key={event.host.id}
+                upcomingHost={false}
+                reRender={reRender}
+              />
             ))
         )}
         <h3>Past Joined list:</h3>
@@ -108,7 +135,13 @@ export default function UserEventList() {
                 Date.parse(moment())
             )
             .map(event => (
-              <ListCard event={event} isHost={false} key={event.host.id} />
+              <ListCard
+                event={event}
+                isHost={false}
+                key={event.host.id}
+                upcomingHost={false}
+                reRender={reRender}
+              />
             ))
         )}
       </div>

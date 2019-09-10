@@ -45,7 +45,6 @@ export default function MainpageEvents({profile}) {
         .container {
           display: flex;
           flex-direction: row;
-          justify-content: space-around;
           overflow: scroll;
           padding: 10px;
         }

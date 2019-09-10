@@ -22,13 +22,11 @@ function HostEvents({ restaurant, events, setEvents }) {
       })
         .then(res => res.json())
         .then(data => {
-          console.log("host", data);
           const availableHosts = data.filter(host => (host.joins.length + 1) < host.host.party)
           setEvents(availableHosts);
         });
     }
   }, [restaurant]);
-  console.log("check", events);
   const handleChange = value => {
     const selectDate = value.format("LL");
     setDate(selectDate);
@@ -36,7 +34,7 @@ function HostEvents({ restaurant, events, setEvents }) {
 
   let eventsToDisplay = events;
   if (date) {
-    eventsToDisplay = events.filter(event => {
+    eventsToDisplay = events.filter(event => event.host.cancelled != true).filter(event => {
       return date == event.host.date;
     });
   }

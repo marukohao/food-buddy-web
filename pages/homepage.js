@@ -3,6 +3,7 @@ import Layouts from "../components/Layouts";
 import { Carousel, Icon, Input } from "antd";
 import MainpageRestaurants from "../components/MainpageRestaurants";
 import MainpageEvents from "../components/MainpageEvents";
+import SearchBar from "../components/SearchBar";
 
 const { Search } = Input;
 
@@ -32,9 +33,9 @@ export default function Homepage() {
     return null;
   }
 
-  const handleSearch = value => {
-    console.log(value);
-  };
+  // const handleSearch = value => {
+  //   console.log(value);
+  // };
 
   return (
     <Layouts style={{ fontFamily: `"Gill Sans", sans-serif` }}>
@@ -46,11 +47,7 @@ export default function Homepage() {
         <Icon style={{ margin: "5px" }} type="environment" />
         {profile.location}
       </h4>
-      <Search
-        placeholder="search user"
-        onSearch={value => handleSearch(value)}
-        style={{ width: 200 }}
-      />
+      <SearchBar />
       <Carousel
         style={{
           textAlign: "center",
