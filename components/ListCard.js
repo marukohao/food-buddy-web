@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Card, Avatar, Popover, Button, Popconfirm, Icon } from "antd";
+import { Card, Avatar, Popover, Button, Popconfirm, Icon, Drawer } from "antd";
 import Router from "next/router";
+import MessagesContainer from "./MessagesContainer";
 
 const { Meta } = Card;
 
-export default function ListCard({ event, isHost, upcomingHost, reRender }) {
+export default function ListCard({ event, isHost, upcomingHost, reRender, user }) {
+  const [visible, setVisible] = useState(false);
+  
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
 
@@ -27,13 +30,16 @@ export default function ListCard({ event, isHost, upcomingHost, reRender }) {
       .then(data => {
         console.log(data);
         reRender();
-        // setClicked(true);
-        // setDecline(true);
-        // notification["error"]({
-        //   message: "you have declined this request"
-        // });
       });
   };
+
+  const showDrawer = () => {
+    setVisible(true)
+    };
+
+  const onClose = () => {
+    setVisible(false)
+    };
 
   return (
     <div>
@@ -92,12 +98,18 @@ export default function ListCard({ event, isHost, upcomingHost, reRender }) {
             <Button style={{ marginLeft: "200px" }}>cancel</Button>
           </Popconfirm>
         ) : null}
-        {/* <p>
-          {joinUsers.map(user => (
-            <Avatar size="small" icon="user" src={user.avatar} key={user} />
-          ))}{" "}
-        </p> */}
+        {user ? null : <p onClick={showDrawer} >leave a message</p>}
       </Card>
+      <Drawer
+        title="Basic Drawer"
+        placement="right"
+        closable={false}
+        onClose={onClose}
+        visible={visible}
+        width={350}
+      >
+        <MessagesContainer host={event.host}/>
+      </Drawer>
       <style>{`
         @media (max-width: 480px) {
           Card {

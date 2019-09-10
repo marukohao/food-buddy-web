@@ -85,7 +85,7 @@ export default function Login() {
           </p>
         ) : null}
         <Form
-          style={{ color: "white"}}
+          style={{ color: "white" }}
           id="signup-form"
           onSubmit={handleSubmit}
         >
@@ -138,19 +138,8 @@ export default function Login() {
               style={{ height: "40px" }}
             />
           </Form.Item>
-          <Form.Item>
-            <Avatar getAvatar={getAvatar} style={{ marginLeft: "35%"}}/>
-            {/* <Input
-              autoComplete="off"
-              className="input-box"
-              type="text"
-              name="avatar"
-              placeholder="avatar url"
-              prefix={
-                <Icon type="idcard" style={{ color: "rgba(0,0,0,.25)" }} />
-              }
-              style={{ height: "40px" }}
-            /> */}
+          <Form.Item style={{ display: "flex", justifyContent: "center" }}>
+            <Avatar getAvatar={getAvatar} />
           </Form.Item>
           <Form.Item>
             <Input

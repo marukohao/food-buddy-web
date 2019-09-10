@@ -52,7 +52,6 @@ export default class Avatar extends React.Component {
     const { imageUrl } = this.state;
     return (
       <Upload
-        style={{ marginLeft: "35%" }}
         name="avatar"
         listType="picture-card"
         className="avatar-uploader"

@@ -23,7 +23,7 @@ export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
                 Date.parse(event.host.date + " " + event.host.time) >=
                 Date.parse(moment())
             )
-            .map(event => <ListCard event={event} isHost />)
+            .map(event => <ListCard event={event} isHost user={user}/>)
         )}
         <h3>Past Host list:</h3>
         {hostEvents.filter(
@@ -83,7 +83,7 @@ export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
                 Date.parse(moment())
             )
             .map(event => (
-              <ListCard event={event} isHost={false} key={event.id} />
+              <ListCard event={event} isHost={false} key={event.id} user={user}/>
             ))
         )}
       </div>
