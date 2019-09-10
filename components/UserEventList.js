@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ListCard from "./ListCard";
-import { Card, Empty, Button } from "antd";
+import { Card, Empty, Button, Icon } from "antd";
 import moment from "moment";
 const { Meta } = Card;
 
@@ -112,6 +112,8 @@ export default function UserEventList() {
             )
             .map(event => (
               <ListCard
+                hostUser={event.host_user}
+                joinUsers={event.join_users}
                 event={event}
                 isHost={false}
                 key={event.host.id}
@@ -161,9 +163,9 @@ export default function UserEventList() {
           flex-direction: row;
           justify-content: space-around;
           align-items: start;
-          margin: 20px;
         }
         h3 {
+          padding: 20px;
           color: #cfcfcf;
         }
         @media (max-width: 480px) {

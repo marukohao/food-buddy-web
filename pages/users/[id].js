@@ -46,7 +46,7 @@ export default function Users() {
         <Card
           style={{
             width: 300,
-            margin: "60px 20px",
+            margin: "60px 80px",
             opacity: "0.8",
             boxShadow: "2px 2px 5px grey",
             marginLeft: "-40px"

@@ -10,8 +10,11 @@ import {
   List
 } from "antd";
 import moment from "moment";
+import { Layout } from "antd";
 
-export default function MessagesContainer({ host }) {
+const { Header, Footer, Sider, Content } = Layout;
+
+export default function MessagesContainer({ host, hosts, joins }) {
   const [profile, setProfile] = useState();
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
@@ -68,64 +71,87 @@ export default function MessagesContainer({ host }) {
   };
 
   return (
-    <div>
-      <div className="message-container">
-        {messages.map(message => {
-          // const time = message.created_at
-          //   .split("T")[0]
-          //   .split("-")
-          //   .map(num => Number(num));
-          return (
-            <Comment
-              // actions={actions}
-              key={message.message.id}
-              author={<a>{message.message.user_name}</a>}
-              avatar={
-                <Avatar
-                  src={message.message.user_avatar}
-                  alt={message.message.user_name}
-                />
-              }
-              content={<p>{message.message.message}</p>}
-              datetime={
-                <Tooltip>
-                  {/* {console.log(message.created_at)} */}
-                  {/* {console.log(time)} */}
-                  <span>{moment(message.created_at).fromNow()}</span>
-                </Tooltip>
-              }
+    <Layout style={{ height: "90vh"}}>
+      <Header style={{backgroundColor: "white"}}>
+          <p style={{marginLeft: "-50px"}}> 
+            group member:
+            {hosts
+              ? hosts.map(user => (
+                  <Avatar
+                    style={{ margin: "5px" }}
+                    size="medium"
+                    icon="user"
+                    src={user.avatar}
+                  />
+                ))
+              : joins.map(user => (
+                  <Avatar
+                    style={{ margin: "5px" }}
+                    size="medium"
+                    icon="user"
+                    src={user.avatar}
+                  />
+                ))}
+          </p>
+      </Header>
+      <Content style={{height: "70vh", backgroundColor: "white"}}>
+          {messages.map(message => {
+            return (
+              <Comment
+                // actions={actions}
+                key={message.message.id}
+                author={
+                  <a>
+                    {message.message.user_name == profile.username
+                      ? message.message.user_name + " (you)"
+                      : message.message.user_name}
+                  </a>
+                }
+                avatar={
+                  <Avatar
+                    src={message.message.user_avatar}
+                    alt={message.message.user_name}
+                  />
+                }
+                content={<p>{message.message.message}</p>}
+                datetime={
+                  <Tooltip>
+                    {/* {console.log(message.created_at)} */}
+                    {/* {console.log(time)} */}
+                    <span>{moment(message.created_at).fromNow()}</span>
+                  </Tooltip>
+                }
+              />
+            );
+          })}
+      </Content>
+      <Footer style={{backgroundColor: "white"}}>
+        <Form
+          onSubmit={handleSubmit}
+          style={{}}
+        >
+          <Form.Item>
+            <Input
+              autoComplete="off"
+              value={input}
+              onChange={handleChange}
+              type="text"
+              name="input"
+              style={{ height: "40px" }}
             />
-          );
-        })}
-      </div>
-      <Form
-        onSubmit={handleSubmit}
-        style={{ display: "flex", flexDirection: "row" }}
-      >
-        <p style={{ color: "white" }}>Please log in:</p>
-        <Form.Item>
-          <Input
-            autoComplete="off"
-            value={input}
-            onChange={handleChange}
-            type="text"
-            name="input"
-            style={{ height: "40px" }}
-          />
-        </Form.Item>
-        <Form.Item>
-          <Input
-            value="submit"
-            type="submit"
-            style={{ height: "40px", cursor: "pointer" }}
-          />
-        </Form.Item>
-      </Form>
+          </Form.Item>
+          <Form.Item>
+            <Input
+              value="submit"
+              type="submit"
+              style={{ height: "40px", cursor: "pointer" }}
+            />
+          </Form.Item>
+        </Form>
+      </Footer>
       <style>{`
-        .message-container {
-          height: 80vh;
-        }
+
       `}</style>
-    </div>
+    </Layout>
   );
 }

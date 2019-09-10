@@ -68,13 +68,14 @@ export default function Profile() {
           <Card
             style={{
               width: 300,
-              margin: "60px 20px",
+              margin: "60px 80px",
+              // marginLeft: "-40px",
               opacity: "0.8",
               boxShadow: "2px 2px 5px grey",
               marginLeft: "-40px"
             }}
           >
-            <Avatar shape="square" size={64} icon="user" src={profile.avatar} />
+            <Avatar shape="square" size={100} icon="user" src={profile.avatar} />
             {/* <img src={profile.avatar} /> */}
             <br />
             <h4 style={{ marginLeft: "10px", marginTop: "10px" }}>

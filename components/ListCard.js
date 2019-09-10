@@ -5,14 +5,33 @@ import MessagesContainer from "./MessagesContainer";
 
 const { Meta } = Card;
 
-export default function ListCard({ event, isHost, upcomingHost, reRender, user }) {
+export default function ListCard({
+  event,
+  isHost,
+  upcomingHost,
+  reRender,
+  user,
+  hostUser,
+  joinUsers
+}) {
   const [visible, setVisible] = useState(false);
-  
+
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
+  let joinEventmember;
+  let hostEventmember;
+  if (!user) {
+    if (!isHost) {
+      joinEventmember = [...joinUsers, hostUser];
+    }
+    if (isHost) {
+      hostEventmember = [...event.joined_users, jsonObj];
+    }
+  }
 
   const handleClick = user => {
-    Router.push(`/users/${user.id}`);
+    if(user.id != jsonObj.id) {
+    Router.push(`/users/${user.id}`);}
   };
 
   const handleCancelClick = () => {
@@ -34,13 +53,13 @@ export default function ListCard({ event, isHost, upcomingHost, reRender, user }
   };
 
   const showDrawer = () => {
-    setVisible(true)
-    };
+    setVisible(true);
+  };
 
   const onClose = () => {
-    setVisible(false)
-    };
-
+    setVisible(false);
+  };
+  console.log(joinUsers, hostUser);
   return (
     <div>
       <Card
@@ -61,7 +80,7 @@ export default function ListCard({ event, isHost, upcomingHost, reRender, user }
           <p style={{ color: "orange" }}>join request sent</p>
         )}
         <Meta
-          avatar={<Avatar src={event.restaurant_image} size="large" />}
+          avatar={<Avatar src={event.restaurant_image} size={64} />}
           title={event.restaurant_name}
           description={event.host.time + " " + event.host.date}
         />
@@ -69,8 +88,8 @@ export default function ListCard({ event, isHost, upcomingHost, reRender, user }
         <p style={{ color: "grey", marginTop: "10px", marginLeft: "60px" }}>
           party number: {event.host.party}
         </p>
-        {isHost
-          ? event.joined_users.map(user => (
+        {isHost && !user
+          ? hostEventmember.map(user => (
               <Popover
                 style={{ opcity: "0.5" }}
                 content={user.username}
@@ -79,7 +98,7 @@ export default function ListCard({ event, isHost, upcomingHost, reRender, user }
               >
                 <Avatar
                   style={{ marginRight: "5px", cursor: "pointer" }}
-                  size="small"
+                  size="medium"
                   icon="user"
                   src={user.avatar}
                   onClick={() => handleClick(user)}
@@ -87,28 +106,67 @@ export default function ListCard({ event, isHost, upcomingHost, reRender, user }
               </Popover>
             ))
           : null}
-        {upcomingHost && !event.host.cancelled ? (
-          <Popconfirm
-            title="Are you sure to cancel this event？"
-            icon={<Icon type="question-circle-o" style={{ color: "red" }} />}
-            onConfirm={handleCancelClick}
-            okText="Yes"
-            cancelText="No"
-          >
-            <Button style={{ marginLeft: "200px" }}>cancel</Button>
-          </Popconfirm>
-        ) : null}
-        {user ? null : <p onClick={showDrawer} >leave a message</p>}
+        {!isHost && !user ?
+          joinEventmember.map(user => (
+              <Popover
+                style={{ opcity: "0.5" }}
+                content={user.username}
+                trigger="hover"
+                key={user.id}
+              >
+                <Avatar
+                  style={{ marginRight: "5px", cursor: "pointer" }}
+                  size="medium"
+                  icon="user"
+                  src={user.avatar}
+                  onClick={() => handleClick(user)}
+                />
+              </Popover>
+            )) : null}
+        <div className="bottom-container">
+          {upcomingHost && !event.host.cancelled ? (
+            <Popconfirm
+              title="Are you sure to cancel this event？"
+              icon={<Icon type="question-circle-o" style={{ color: "red" }} />}
+              onConfirm={handleCancelClick}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button
+                style={{
+                  marginLeft: "200px",
+                  marginBottom: "-25px",
+                  display: "inherit"
+                }}
+              >
+                cancel
+              </Button>
+            </Popconfirm>
+          ) : null}
+          {user ? null : event.joined === null ? null : (
+            <p
+              onClick={showDrawer}
+              style={{ cursor: "pointer", marginTop: "10px" }}
+            >
+              leave a message
+            </p>
+          )}
+        </div>
       </Card>
       <Drawer
-        title="Basic Drawer"
+        title={"Event messages"}
         placement="right"
         closable={false}
         onClose={onClose}
         visible={visible}
         width={350}
+        style={{ height: "100vh"}}
       >
-        <MessagesContainer host={event.host}/>
+        <MessagesContainer
+          host={event.host}
+          hosts={hostEventmember}
+          joins={joinEventmember}
+        />
       </Drawer>
       <style>{`
         @media (max-width: 480px) {

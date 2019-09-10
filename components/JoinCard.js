@@ -73,7 +73,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
       }}
     >
       <p>
-        <Avatar src={join.user.avatar} />
+        <Avatar src={join.user.avatar} style={{ marginRight: "7px"}}/>
         {join.user.username} requests to join
       </p>
       <Meta

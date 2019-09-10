@@ -103,9 +103,9 @@ export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
           flex-direction: row;
           justify-content: space-around;
           align-items: start;
-          margin: 20px;
         }
         h3 {
+          padding: 20px;
           color: #cfcfcf;
         }
         @media (max-width: 480px) {
