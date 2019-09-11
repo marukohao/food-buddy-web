@@ -50,15 +50,15 @@ export default function Profile() {
   };
 
   const handleNameChange = e => {
-    setName(e.target.value);
+    setName(e.target.value.replace(/\s+$/, ''));
   };
 
   const handleLocationChange = e => {
-    setLocation(e.target.value);
+    setLocation(e.target.value.replace(/\s+$/, ''));
   };
 
   const handleBioChange = e => {
-    setBio(e.target.value);
+    setBio(e.target.value.replace(/\s+$/, ''));
   };
 
   if (profile) {
@@ -69,13 +69,18 @@ export default function Profile() {
             style={{
               width: 300,
               margin: "60px 80px",
-              // marginLeft: "-40px",
-              opacity: "0.8",
+              opacity: "0.9",
+              borderRadius: "3px",
               boxShadow: "2px 2px 5px grey",
               marginLeft: "-40px"
             }}
           >
-            <Avatar shape="square" size={100} icon="user" src={profile.avatar} />
+            <Avatar
+              shape="square"
+              size={100}
+              icon="user"
+              src={profile.avatar}
+            />
             {/* <img src={profile.avatar} /> */}
             <br />
             <h4 style={{ marginLeft: "10px", marginTop: "10px" }}>

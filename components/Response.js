@@ -8,7 +8,7 @@ export default function Response({ join, restaurantName, host }) {
 
   return (
     <Card
-      style={{ width: 350, margin: "20px", boxShadow: "2px 2px 5px lightgrey", opacity: "0.7" }}
+      style={{ width: 350, margin: "20px", boxShadow: "2px 2px 5px lightgrey", opacity: "0.8" }}
     >
       {join.joined ? (
         <p style={{ color: "green" }} >Your request has been accepted</p>

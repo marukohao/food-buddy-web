@@ -120,8 +120,9 @@ export default function ListCard({
         style={{
           width: 320,
           margin: "20px",
-          opacity: "0.8",
-          boxShadow: "2px 2px 5px grey"
+          opacity: "0.9",
+          boxShadow: "2px 2px 5px grey",
+          borderRadius: "3px"
         }}
       >
         {event.host.cancelled && isHost ? (

@@ -172,7 +172,7 @@ export default function UserEventList() {
         }
         h3 {
           padding: 20px;
-          color: #cfcfcf;
+          color: #a87d59;
         }
         @media (max-width: 480px) {
           .container {

@@ -46,7 +46,7 @@ export default function MainpageEvents({profile}) {
           display: flex;
           flex-direction: row;
           overflow: scroll;
-          padding: 10px;
+          // padding: 10px;
         }
         // @media (max-width: 480px) {
         //   .container {

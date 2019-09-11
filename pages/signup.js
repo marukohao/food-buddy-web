@@ -25,9 +25,9 @@ export default function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const password = e.target.password.value;
-    const location = e.target.location.value;
+    const name = e.target.name.value.replace(/\s+$/, "");
+    const password = e.target.password.value.replace(/\s+$/, "");
+    const location = e.target.location.value.replace(/\s+$/, "");
     const bio = e.target.bio.value;
     // const avatar = e.target.avatar.value;
     fetch("http://localhost:7777/users", {

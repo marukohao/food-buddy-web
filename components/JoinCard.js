@@ -69,7 +69,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
         width: 350,
         margin: "20px",
         boxShadow: "2px 2px 5px lightgrey",
-        opacity: "0.7"
+        opacity: "0.8"
       }}
     >
       <p>

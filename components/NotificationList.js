@@ -68,7 +68,7 @@ export default function NotificationList({responseJoins, requestJoins, reRender}
           margin: 20px;
         }
         h3 {
-          color: #b19797;
+          color: #a87d59;
         }
         @media (max-width: 480px) {
           .container {

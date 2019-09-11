@@ -19,7 +19,7 @@ export default function Layouts(props) {
   const onCollapse = collapsed => {
     setCollapsed(collapsed);
   };
-  
+
   const selectKey = [router.pathname];
 
   return (
@@ -77,6 +77,16 @@ export default function Layouts(props) {
         </Content>
         {/* <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer> */}
       </Layout>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Hammersmith+One|Josefin+Sans|Luckiest+Guy|Quicksand|Righteous&display=swap');
+
+        body {
+            // font-family: 'Josefin Sans', sans-serif;
+            // font-family: 'Righteous', cursive;
+            font-family: 'Hammersmith One', sans-serif;
+            // font-family: 'Fredericka the Great', cursive;
+        }
+      `}</style>
     </Layout>
   );
 }

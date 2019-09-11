@@ -9,8 +9,8 @@ export default function Login() {
 
   const handleSubmit = e => {
     e.preventDefault();
-    const username = e.target.username.value;
-    const password = e.target.password.value;
+    const username = e.target.username.value.replace(/\s+$/, "");
+    const password = e.target.password.value.replace(/\s+$/, "");
     fetch("http://localhost:7777/login", {
       method: "POST",
       headers: {

@@ -79,8 +79,8 @@ export default function MessagesContainer({ host, hosts, joins }) {
             user_id: user.id
           })
         })
-        .then(resp => resp.json())
-        .then(data => console.log(data))
+          .then(resp => resp.json())
+          .then(data => console.log(data));
       });
     } else {
       const joinMember = joins.filter(user => user.id != profile.id);
@@ -99,7 +99,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
         })
           .then(resp => resp.json())
           .then(data => console.log("create", data));
-      });    
+      });
     }
   };
 
@@ -131,7 +131,9 @@ export default function MessagesContainer({ host, hosts, joins }) {
               ))}
         </p>
       </Header>
-      <Content style={{ height: "70vh", backgroundColor: "white" }}>
+      <Content
+        style={{ height: "70vh", backgroundColor: "white", overflow: "auto" }}
+      >
         {messages.map(message => {
           return (
             <Comment
@@ -184,7 +186,11 @@ export default function MessagesContainer({ host, hosts, joins }) {
         </Form>
       </Footer>
       <style>{`
-
+        // @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
+        
+        // Layout {
+        //   font-family: 'Righteous', cursive;
+        // }
       `}</style>
     </Layout>
   );
