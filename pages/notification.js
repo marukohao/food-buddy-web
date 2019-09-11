@@ -28,7 +28,7 @@ export default function Notification() {
           setHosts(data);
         });
       
-      fetch(`http://localhost:7777/notifications`, {
+      fetch(`http://localhost:7777/notification1`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -38,6 +38,7 @@ export default function Notification() {
       })
         .then(resp => resp.json())
         .then(data => {
+          console.log(data)
           setJoins(data);
         });
 

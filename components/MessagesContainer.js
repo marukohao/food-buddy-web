@@ -19,7 +19,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState([]);
 
-  console.log("host", host);
+  // console.log("host", host);
   useEffect(() => {
     try {
       let json = localStorage.getItem("data");
@@ -36,7 +36,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
       })
         .then(resp => resp.json())
         .then(data => {
-          console.log("get", data);
+          // console.log("get", data);
           setMessages(data);
         });
     } catch {}
@@ -62,8 +62,45 @@ export default function MessagesContainer({ host, hosts, joins }) {
       .then(resp => resp.json())
       .then(data => {
         setInput("");
-        console.log(data);
+        // console.log(data);
       });
+    if (hosts) {
+      const hostMember = hosts.filter(user => user.id != profile.id);
+      hostMember.forEach(user => {
+        fetch("http://localhost:7777/notifications", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+          },
+          body: JSON.stringify({
+            new: true,
+            host_id: host.id,
+            user_id: user.id
+          })
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
+      });
+    } else {
+      const joinMember = joins.filter(user => user.id != profile.id);
+      joinMember.forEach(user => {
+        fetch("http://localhost:7777/notifications", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+          },
+          body: JSON.stringify({
+            new: true,
+            host_id: host.id,
+            user_id: user.id
+          })
+        })
+          .then(resp => resp.json())
+          .then(data => console.log("create", data));
+      });    
+    }
   };
 
   const handleChange = e => {
@@ -71,65 +108,62 @@ export default function MessagesContainer({ host, hosts, joins }) {
   };
 
   return (
-    <Layout style={{ height: "90vh"}}>
-      <Header style={{backgroundColor: "white"}}>
-          <p style={{marginLeft: "-50px"}}> 
-            group member:
-            {hosts
-              ? hosts.map(user => (
-                  <Avatar
-                    style={{ margin: "5px" }}
-                    size="medium"
-                    icon="user"
-                    src={user.avatar}
-                  />
-                ))
-              : joins.map(user => (
-                  <Avatar
-                    style={{ margin: "5px" }}
-                    size="medium"
-                    icon="user"
-                    src={user.avatar}
-                  />
-                ))}
-          </p>
+    <Layout style={{ height: "90vh" }}>
+      <Header style={{ backgroundColor: "white" }}>
+        <p style={{ marginLeft: "-50px" }}>
+          group member:
+          {hosts
+            ? hosts.map(user => (
+                <Avatar
+                  style={{ margin: "5px" }}
+                  size="medium"
+                  icon="user"
+                  src={user.avatar}
+                />
+              ))
+            : joins.map(user => (
+                <Avatar
+                  style={{ margin: "5px" }}
+                  size="medium"
+                  icon="user"
+                  src={user.avatar}
+                />
+              ))}
+        </p>
       </Header>
-      <Content style={{height: "70vh", backgroundColor: "white"}}>
-          {messages.map(message => {
-            return (
-              <Comment
-                // actions={actions}
-                key={message.message.id}
-                author={
-                  <a>
-                    {message.message.user_name == profile.username
-                      ? message.message.user_name + " (you)"
-                      : message.message.user_name}
-                  </a>
-                }
-                avatar={
-                  <Avatar
-                    src={message.message.user_avatar}
-                    alt={message.message.user_name}
-                  />
-                }
-                content={<p>{message.message.message}</p>}
-                datetime={
-                  <Tooltip>
-                    {/* {console.log(message.created_at)} */}
-                    {/* {console.log(time)} */}
-                    <span>{moment(message.created_at).fromNow()}</span>
-                  </Tooltip>
-                }
-              />
-            );
-          })}
+      <Content style={{ height: "70vh", backgroundColor: "white" }}>
+        {messages.map(message => {
+          return (
+            <Comment
+              // actions={actions}
+              key={message.message.id}
+              author={
+                <a>
+                  {message.message.user_name == profile.username
+                    ? message.message.user_name + " (you)"
+                    : message.message.user_name}
+                </a>
+              }
+              avatar={
+                <Avatar
+                  src={message.message.user_avatar}
+                  alt={message.message.user_name}
+                />
+              }
+              content={<p>{message.message.message}</p>}
+              datetime={
+                <Tooltip>
+                  {/* {console.log(message.created_at)} */}
+                  {/* {console.log(time)} */}
+                  <span>{moment(message.created_at).fromNow()}</span>
+                </Tooltip>
+              }
+            />
+          );
+        })}
       </Content>
-      <Footer style={{backgroundColor: "white"}}>
-        <Form
-          onSubmit={handleSubmit}
-          style={{}}
-        >
+      <Footer style={{ backgroundColor: "white" }}>
+        <Form onSubmit={handleSubmit} style={{}}>
           <Form.Item>
             <Input
               autoComplete="off"

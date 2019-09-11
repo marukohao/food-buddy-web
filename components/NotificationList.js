@@ -5,8 +5,10 @@ import { Card, Empty } from "antd";
 const { Meta } = Card;
 
 export default function NotificationList({responseJoins, requestJoins, reRender}) {
-  let ResponseJoins = responseJoins.filter(join => join.join.joined == true || join.join.declined == true)
-  
+
+
+  let  ResponseJoins = responseJoins.filter(join => join.join.joined == true || join.join.declined == true)
+
   
   return (
     <div className="container">

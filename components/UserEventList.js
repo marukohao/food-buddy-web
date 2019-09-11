@@ -102,7 +102,10 @@ export default function UserEventList() {
             Date.parse(event.host.date + " " + event.host.time) >=
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            style={{ marginLeft: "100px" }}
+          />
         ) : (
           joinedEvents
             .filter(
@@ -128,7 +131,10 @@ export default function UserEventList() {
             Date.parse(event.host.date + " " + event.host.time) <
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            style={{ marginLeft: "100px" }}
+          />
         ) : (
           joinedEvents
             .filter(

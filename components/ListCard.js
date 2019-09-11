@@ -1,7 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Card, Avatar, Popover, Button, Popconfirm, Icon, Drawer } from "antd";
+import {
+  Card,
+  Avatar,
+  Popover,
+  Button,
+  Badge,
+  Popconfirm,
+  Icon,
+  Drawer
+} from "antd";
 import Router from "next/router";
 import MessagesContainer from "./MessagesContainer";
+import UserEventList from "./UserEventList";
 
 const { Meta } = Card;
 
@@ -15,6 +25,8 @@ export default function ListCard({
   joinUsers
 }) {
   const [visible, setVisible] = useState(false);
+  const [profile, setProfile] = useState();
+  const [notification, setNotification] = useState([]);
 
   let json = localStorage.getItem("data");
   let jsonObj = JSON.parse(json);
@@ -29,9 +41,36 @@ export default function ListCard({
     }
   }
 
+  useEffect(() => {
+    try {
+      let json = localStorage.getItem("data");
+      let jsonObj = JSON.parse(json);
+      setProfile(jsonObj);
+      fetch(`http://localhost:7777/notifications`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          // console.log(data, event.host.id);
+          const notification = data.filter(
+            notification =>
+              notification.host_id == event.host.id &&
+              notification.user_id == jsonObj.id
+          );
+          // console.log(notification.new, notification)
+          setNotification(notification[0]);
+        });
+    } catch {}
+  }, []);
+
   const handleClick = user => {
-    if(user.id != jsonObj.id) {
-    Router.push(`/users/${user.id}`);}
+    if (user.id != jsonObj.id) {
+      Router.push(`/users/${user.id}`);
+    }
   };
 
   const handleCancelClick = () => {
@@ -58,8 +97,22 @@ export default function ListCard({
 
   const onClose = () => {
     setVisible(false);
+    if (notification) {
+      fetch("http://localhost:7777/notifications/" + notification.id, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        },
+        body: JSON.stringify({
+          new: false
+        })
+      })
+        .then(resp => resp.json())
+        .then(data => setNotification(data.new));
+    }
   };
-  console.log(joinUsers, hostUser);
+  // console.log(joinUsers, hostUser);
   return (
     <div>
       <Card
@@ -106,8 +159,8 @@ export default function ListCard({
               </Popover>
             ))
           : null}
-        {!isHost && !user ?
-          joinEventmember.map(user => (
+        {!isHost && !user
+          ? joinEventmember.map(user => (
               <Popover
                 style={{ opcity: "0.5" }}
                 content={user.username}
@@ -122,7 +175,8 @@ export default function ListCard({
                   onClick={() => handleClick(user)}
                 />
               </Popover>
-            )) : null}
+            ))
+          : null}
         <div className="bottom-container">
           {upcomingHost && !event.host.cancelled ? (
             <Popconfirm
@@ -144,12 +198,36 @@ export default function ListCard({
             </Popconfirm>
           ) : null}
           {user ? null : event.joined === null ? null : (
-            <p
-              onClick={showDrawer}
-              style={{ cursor: "pointer", marginTop: "10px" }}
+            <Badge
+              dot={notification ? notification.new : false}
+              style={{ width: "5px" }}
             >
-              leave a message
-            </p>
+              <a href="#" className="head-example" />
+              <p
+                onClick={showDrawer}
+                style={{ cursor: "pointer", marginTop: "10px" }}
+              >
+                {notification ? (
+                  notification.new ? (
+                    <p style={{color: "red"}}>new message</p>
+                  ) : (
+                    <p
+                      onClick={showDrawer}
+                      style={{ cursor: "pointer", marginTop: "10px" }}
+                    >
+                      leave a message
+                    </p>
+                  )
+                ) : (
+                  <p
+                    onClick={showDrawer}
+                    style={{ cursor: "pointer", marginTop: "10px" }}
+                  >
+                    leave a message
+                  </p>
+                )}
+              </p>
+            </Badge>
           )}
         </div>
       </Card>
@@ -160,7 +238,7 @@ export default function ListCard({
         onClose={onClose}
         visible={visible}
         width={350}
-        style={{ height: "100vh"}}
+        style={{ height: "100vh" }}
       >
         <MessagesContainer
           host={event.host}
