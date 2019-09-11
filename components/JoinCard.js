@@ -82,9 +82,9 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
       />
       <p>party number: {host.party}</p>
       <p>remaining: {host.party - joinedNumber}</p>
-      {accept ? <p>accepted</p> : null}
-      {decline ? <p>declined</p> : null}
-      {clicked ? null : (
+      {accept || join.join.joined ? <p style={{color: "green"}}>accepted</p> : null}
+      {decline || join.join.declined ? <p style={{color: "red"}}>declined</p> : null}
+      {clicked || join.join.joined || join.join.declined ? null : (
         <div>
           <Button
             onClick={handleAcceptClick}

@@ -6,48 +6,62 @@ const { Meta } = Card;
 
 export default function NotificationList({responseJoins, requestJoins, reRender}) {
 
-
-  let  ResponseJoins = responseJoins.filter(join => join.join.joined == true || join.join.declined == true)
+  const compareUpdatetime = (A, B) => {
+    const a = Date.parse(A.join.updated_at);
+    const b = Date.parse(B.join.updated_at);
+    return b - a;
+  }
+  const compareHostUpdatetime = (A, B) => {
+    const a = Date.parse(A.host.updated_at);
+    const b = Date.parse(B.host.updated_at);
+    return b - a;
+  };
+  let  ResponseJoins = responseJoins.filter(join => join.join.joined == true || join.join.declined == true).sort(compareUpdatetime)
 
   
   return (
     <div className="container">
       <div className="request-container">
-        <h3>Host list:</h3>
-        {requestJoins.map(host => {
-          const joinedNumber =
-            host.joins.filter(join => join.join.joined == true).length + 1;
-          // console.log(host.joins.filter(join => join.join.joined == true).length + 1, "number");
-          // console.log("check", host);
-          return host.joins
-            .filter(
-              join =>
-                join.join.joined == undefined && join.join.declined == undefined
-            )
-            .map(join => (
-              <JoinCard
-                reRender={reRender}
-                joinedNumber={joinedNumber}
-                host={host.host}
-                restaurantName={host.restaurant_name}
-                join={join}
-                joinedNumber={joinedNumber}
-                key={join.join.id}
-              />
-            ));
-        })}
+        <h3>Requests list:</h3>
+        <div style={{ overflow: "auto", height: "95vh" }}>
+          {requestJoins.sort(compareHostUpdatetime).map(host => {
+            const joinedNumber =
+              host.joins.filter(join => join.join.joined == true).length + 1;
+            return (
+              host.joins
+                .sort(compareUpdatetime)
+                // .filter(
+                //   join =>
+                //     join.join.joined == undefined && join.join.declined == undefined
+                // )
+                .map(join => (
+                  <JoinCard
+                    reRender={reRender}
+                    joinedNumber={joinedNumber}
+                    host={host.host}
+                    restaurantName={host.restaurant_name}
+                    join={join}
+                    joinedNumber={joinedNumber}
+                    key={join.join.id}
+                  />
+                ))
+            );
+          })}
+        </div>
       </div>
       <div className="response-container">
-        <h3>Response list:</h3>
+        <h3>Responsed list:</h3>
         {/* {console.log("h", ResponseJoins)} */}
-        {ResponseJoins.map(join => (
-          <Response
-            host={join.host}
-            restaurantName={join.restaurant_name}
-            join={join.join}
-            key={join.join.id}
-          />
-        ))}
+        <div style={{ overflow: "auto", height: "95vh" }}>
+          {ResponseJoins.map(join => (
+            <Response
+              host={join.host}
+              restaurantName={join.restaurant_name}
+              join={join.join}
+              key={join.join.id}
+            />
+          ))}
+        </div>
       </div>
       <style jsx>{`
         .container {

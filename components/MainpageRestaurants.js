@@ -37,6 +37,7 @@ export default function MainpageRestaurants({ profile }) {
         .container {
           display: flex;
           overflow: auto;
+          margin: 40px 20px;
         }
         // @media (max-width: 480px) {
         //   .container {

@@ -142,8 +142,10 @@ export default function ListCard({
         <p style={{ color: "grey", marginTop: "10px", marginLeft: "60px" }}>
           party number: {event.host.party}
         </p>
-        {isHost && !user
-          ? hostEventmember.map(user => (
+        {isHost && !user ? (
+          <p>
+            Ontable:{" "}
+            {hostEventmember.map(user => (
               <Popover
                 style={{ opcity: "0.5" }}
                 content={user.username}
@@ -158,10 +160,13 @@ export default function ListCard({
                   onClick={() => handleClick(user)}
                 />
               </Popover>
-            ))
-          : null}
-        {!isHost && !user
-          ? joinEventmember.map(user => (
+            ))}
+          </p>
+        ) : null}
+        {!isHost && !user ? (
+          <p>
+            Ontable:{" "}
+            {joinEventmember.map(user => (
               <Popover
                 style={{ opcity: "0.5" }}
                 content={user.username}
@@ -176,8 +181,9 @@ export default function ListCard({
                   onClick={() => handleClick(user)}
                 />
               </Popover>
-            ))
-          : null}
+            ))}
+          </p>
+        ) : null}
         <div className="bottom-container">
           {upcomingHost && !event.host.cancelled ? (
             <Popconfirm
@@ -210,12 +216,16 @@ export default function ListCard({
               >
                 {notification ? (
                   notification.new ? (
-                    <p style={{color: "red"}}>new message</p>
+                    <p style={{ color: "red" }}>
+                      <Icon type="message" style={{ marginRight: "7px" }} />
+                      new message
+                    </p>
                   ) : (
                     <p
                       onClick={showDrawer}
                       style={{ cursor: "pointer", marginTop: "10px" }}
                     >
+                      <Icon type="message" style={{ marginRight: "7px" }} />
                       leave a message
                     </p>
                   )
@@ -224,6 +234,7 @@ export default function ListCard({
                     onClick={showDrawer}
                     style={{ cursor: "pointer", marginTop: "10px" }}
                   >
+                    <Icon type="message" style={{ marginRight: "7px" }} />
                     leave a message
                   </p>
                 )}

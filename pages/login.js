@@ -44,19 +44,22 @@ export default function Login() {
           height: "100vh",
           width: "100vw",
           display: "flex",
+          flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
           backgroundImage:
             "url(https://images.unsplash.com/photo-1541544741938-0af808871cc0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2698&q=80)"
         }}
       >
+        <h1>Share Table</h1>
         <div
           className="container"
           style={{
             width: "500px",
             padding: "80px",
             background: "#312a2a",
-            opacity: "0.8"
+            opacity: "0.8",
+            borderRadius: "3px"
           }}
         >
           {failedLogin ? (
@@ -64,7 +67,7 @@ export default function Login() {
               User name doesn't match your password
             </p>
           ) : null}
-          <Form onSubmit={handleSubmit}>
+          <Form onSubmit={handleSubmit} style={{ borderRadiun: "3px"}}>
             <p style={{ color: "white" }}>Please log in:</p>
             <Form.Item>
               <Input
@@ -101,7 +104,13 @@ export default function Login() {
           <Link href="/signup">
             <a>Create New User</a>
           </Link>
-          <style jsx>{`
+          <style>{`
+            @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
+            h1 {
+             font-family: 'Lobster', cursive;
+              font-size: 50px;
+              opacity: 0.9;
+            }
             .container {
               // top: 40%;
               // left: 40%;

@@ -43,6 +43,7 @@ export default function MainpageEvents({profile}) {
           border-bottom: solid 1px lightgrey;
         }
         .container {
+          margin: 40px 20px;
           display: flex;
           flex-direction: row;
           overflow: scroll;

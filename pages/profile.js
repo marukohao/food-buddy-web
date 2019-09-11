@@ -83,7 +83,7 @@ export default function Profile() {
             />
             {/* <img src={profile.avatar} /> */}
             <br />
-            <h4 style={{ marginLeft: "10px", marginTop: "10px" }}>
+            <h4 style={{ marginLeft: "10px", marginTop: "10px", fontSize: "20px" }}>
               {profile.username}
             </h4>
             <br />
@@ -149,8 +149,8 @@ export default function Profile() {
             }
             @media (max-width: 480px) {
               .container {
+                display: flex;
                 flex-direction: column;
-                align-items: center;
               }
             }
           `}</style>

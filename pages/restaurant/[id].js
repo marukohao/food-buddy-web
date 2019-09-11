@@ -59,7 +59,7 @@ export default function Restaurant() {
             <Meta title={restaurant.name} description={restaurant.category} />
           </Card>
           <Button style={{ margin: "30px"}} type="primary" onClick={handleCreateClick}>
-            New Event
+            New Table
           </Button>
         </div>
         <div>

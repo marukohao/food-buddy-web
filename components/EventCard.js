@@ -58,7 +58,7 @@ export default function EventCard({ event, eventUser, joinUsers }) {
               size={64}
               icon="user"
               src={eventUser.avatar}
-              style={{ cursor: "pointer", opacity: "1" }}
+              style={{ cursor: "pointer", opacity: "1"}}
             />
           }
           title={eventUser.username}
@@ -66,7 +66,7 @@ export default function EventCard({ event, eventUser, joinUsers }) {
         />
         <p style={{ color: "grey" }}>party number: {event.party}</p>
         {jsonObj.id == eventUser.id ? null : (
-          <Button onClick={handleClick} style={{ itemAlign: "center" }}>
+          <Button onClick={handleClick} style={{ itemAlign: "center" , marginBottom: "7px"}}>
             Join
           </Button>
         )}

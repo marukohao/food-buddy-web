@@ -15,7 +15,7 @@ export default function RestaurantCard({restaurant}) {
   return (
     <Card
       hoverable
-      style={{ width: 280, margin: "20px", boxShadow: "2px 2px 5px lightgrey" }}
+      style={{ width: 280, marginRight: "20px", marginBottom: "20px", boxShadow: "2px 2px 5px lightgrey" }}
       cover={
         <img alt="example" src={restaurant.image_url} onClick={handleClick} />
       }

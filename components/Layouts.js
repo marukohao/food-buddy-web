@@ -26,6 +26,16 @@ export default function Layouts(props) {
     <Layout style={{ minHeight: "100vh" }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className="logo" />
+        <h3
+          style={{
+            color: "white",
+            marginTop: "7px",
+            padding: "5px",
+            textAlign: "center"
+          }}
+        >
+          Share Table
+        </h3>
         <Menu theme="dark" defaultSelectedKeys={selectKey} mode="inline">
           <Menu.Item key="/homepage">
             <Link href="/homepage">
@@ -79,12 +89,16 @@ export default function Layouts(props) {
       </Layout>
       <style>{`
         @import url('https://fonts.googleapis.com/css?family=Fredericka+the+Great|Hammersmith+One|Josefin+Sans|Luckiest+Guy|Quicksand|Righteous&display=swap');
-
+        @import url('https://fonts.googleapis.com/css?family=Lobster&display=swap');
         body {
             // font-family: 'Josefin Sans', sans-serif;
             // font-family: 'Righteous', cursive;
             font-family: 'Hammersmith One', sans-serif;
             // font-family: 'Fredericka the Great', cursive;
+        }
+        h2, h3 {
+          font-family: 'Lobster', cursive;
+          font-size: 25px;
         }
       `}</style>
     </Layout>

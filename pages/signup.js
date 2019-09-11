@@ -71,7 +71,7 @@ export default function Login() {
       }}
     >
       <div
-        id="signup"
+        className="signup"
         style={{
           width: "500px",
           padding: "80px",
@@ -159,6 +159,12 @@ export default function Login() {
       <style jsx>{`
         .input-box {
           height: 40px;
+        }
+        @media (max-width: 480px) {
+          .signup {
+            width: 350px;
+            padding: 50px;
+          }
         }
       `}</style>
     </div>

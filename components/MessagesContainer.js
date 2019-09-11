@@ -7,7 +7,7 @@ import {
   Form,
   Comment,
   Tooltip,
-  List
+  Popover
 } from "antd";
 import moment from "moment";
 import { Layout } from "antd";
@@ -114,20 +114,34 @@ export default function MessagesContainer({ host, hosts, joins }) {
           group member:
           {hosts
             ? hosts.map(user => (
-                <Avatar
-                  style={{ margin: "5px" }}
-                  size="medium"
-                  icon="user"
-                  src={user.avatar}
-                />
+                <Popover
+                  style={{ opcity: "0.5" }}
+                  content={user.username}
+                  trigger="hover"
+                  key={user.id}
+                >
+                  <Avatar
+                    style={{ margin: "5px" }}
+                    size="medium"
+                    icon="user"
+                    src={user.avatar}
+                  />
+                </Popover>
               ))
             : joins.map(user => (
-                <Avatar
-                  style={{ margin: "5px" }}
-                  size="medium"
-                  icon="user"
-                  src={user.avatar}
-                />
+                <Popover
+                  style={{ opcity: "0.5" }}
+                  content={user.username}
+                  trigger="hover"
+                  key={user.id}
+                >
+                  <Avatar
+                    style={{ margin: "5px" }}
+                    size="medium"
+                    icon="user"
+                    src={user.avatar}
+                  />
+                </Popover>
               ))}
         </p>
       </Header>

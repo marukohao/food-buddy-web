@@ -88,7 +88,7 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
           style={{ width: "60%", margin: "10px" }}
           type="text"
           id="time"
-          placeholder="time 00:00"
+          placeholder="time 00:00 - 24:00"
         />
         <Input
           style={{ width: "60%", margin: "10px" }}

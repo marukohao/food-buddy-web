@@ -17,7 +17,7 @@ export default function MainpageEventCard({ host }) {
       title={host.hoster.username}
       style={{
         width: "300px",
-        margin: "20px",
+        marginRight: "20px",
         boxShadow: "2px 2px 5px lightgrey",
         overflowWrap: "break-word"
       }}
@@ -30,9 +30,16 @@ export default function MainpageEventCard({ host }) {
         avatar={<Avatar src={host.restaurant.image_url} size="large" />}
         title={host.restaurant.name}
         description={host.host.time + " " + host.host.date}
-        style={{ width: "300px", overflowWrap: "break-word", wordWrap: "break-word" }}
+        style={{
+          width: "280px",
+          overflowWrap: "break-word",
+          wordWrap: "break-word"
+        }}
       />
       <style jsx>{`
+        ."ant-card-meta-title {
+          width: 100px;
+        }
         img {
           height: 200px;
           width: 280px;

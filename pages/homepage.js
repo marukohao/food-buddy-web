@@ -39,9 +39,9 @@ export default function Homepage() {
 
   return (
     <Layouts style={{ fontFamily: `"Gill Sans", sans-serif` }}>
-      <h4 style={{ margin: "10px", color: "grey" }}>
+      <h3 style={{ margin: "10px", color: "#5f5d5d", fontSize: "25px" }}>
         Welcome {profile.username}
-      </h4>
+      </h3>
       <h4 style={{ margin: "10px", color: "grey" }}>
         Your location
         <Icon style={{ margin: "5px" }} type="environment" />
