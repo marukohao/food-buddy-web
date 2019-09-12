@@ -37,6 +37,7 @@ export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             style={{ marginLeft: "100px" }}
+            description="No Events"
           />
         ) : (
           hostEvents
@@ -57,7 +58,7 @@ export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
             Date.parse(event.host.date + " " + event.host.time) >=
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="No Events" />
         ) : (
           joinedEvents
             .filter(
@@ -80,7 +81,7 @@ export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
             Date.parse(event.host.date + " " + event.host.time) <
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="No Events" />
         ) : (
           joinedEvents
             .filter(

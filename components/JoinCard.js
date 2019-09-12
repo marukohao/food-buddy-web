@@ -67,7 +67,7 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
     <Card
       style={{
         width: 350,
-        margin: "20px",
+        margin: "20px 0",
         boxShadow: "2px 2px 5px lightgrey",
         opacity: "0.8"
       }}
@@ -80,8 +80,8 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
         title={restaurantName}
         description={host.time + " " + host.date}
       />
-      <p>party number: {host.party}</p>
-      <p>remaining: {host.party - joinedNumber}</p>
+      <p>party size: {host.party}</p>
+      <p>open spots: {host.party - joinedNumber}</p>
       {accept || join.join.joined ? <p style={{color: "green"}}>accepted</p> : null}
       {decline || join.join.declined ? <p style={{color: "red"}}>declined</p> : null}
       {clicked || join.join.joined || join.join.declined ? null : (

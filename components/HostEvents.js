@@ -44,7 +44,7 @@ function HostEvents({ restaurant, events, setEvents }) {
       <Calendar fullscreen={false} onChange={handleChange} />
       {!!eventsToDisplay ? (
         eventsToDisplay.length == 0 ? (
-          <Empty />
+          <Empty description="No Events"/>
         ) : (
           eventsToDisplay.map(event => (
             <EventCard

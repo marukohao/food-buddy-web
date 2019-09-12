@@ -82,7 +82,7 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
           style={{ width: "60%", margin: "10px" }}
           type="text"
           id="party"
-          placeholder="number of party"
+          placeholder="party size"
         />
         <Input
           style={{ width: "60%", margin: "10px" }}

@@ -64,12 +64,14 @@ export default function Login() {
         height: "100vh",
         width: "100vw",
         display: "flex",
+        flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
         backgroundImage:
           "url(https://images.unsplash.com/photo-1494859802809-d069c3b71a8a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80)"
       }}
     >
+      <h1>Share Table</h1>
       <div
         className="signup"
         style={{
@@ -84,6 +86,7 @@ export default function Login() {
             user name already exist
           </p>
         ) : null}
+
         <Form
           style={{ color: "white" }}
           id="signup-form"
@@ -157,6 +160,12 @@ export default function Login() {
         </Link>
       </div>
       <style jsx>{`
+        @import url("https://fonts.googleapis.com/css?family=Lobster&display=swap");
+        h1 {
+          font-family: "Lobster", cursive;
+          font-size: 50px;
+          opacity: 0.9;
+        }
         .input-box {
           height: 40px;
         }

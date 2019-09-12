@@ -66,7 +66,7 @@ export default function Homepage() {
         Popular restaurants in {profile.location}
       </h2>
       <MainpageRestaurants profile={profile} />
-      <h2 style={{ margin: "20px" }}>Recently events in {profile.location}</h2>
+      <h2 style={{ margin: "20px" }}>Recent "share-tables" in {profile.location}</h2>
       <MainpageEvents profile={profile} />
       <style jsx>{``}</style>
     </Layouts>

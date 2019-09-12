@@ -93,24 +93,24 @@ export default function ListCard({
 
   const showDrawer = () => {
     setVisible(true);
+      if (notification) {
+        fetch("http://localhost:7777/notifications/" + notification.id, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("jwt")}`
+          },
+          body: JSON.stringify({
+            new: false
+          })
+        })
+          .then(resp => resp.json())
+          .then(data => setNotification(data.new));
+      }
   };
 
   const onClose = () => {
     setVisible(false);
-    if (notification) {
-      fetch("http://localhost:7777/notifications/" + notification.id, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${localStorage.getItem("jwt")}`
-        },
-        body: JSON.stringify({
-          new: false
-        })
-      })
-        .then(resp => resp.json())
-        .then(data => setNotification(data.new));
-    }
   };
   // console.log(joinUsers, hostUser);
   return (
@@ -140,11 +140,11 @@ export default function ListCard({
         />
         {/* <p>{event.host.time + " " + event.host.date}</p> */}
         <p style={{ color: "grey", marginTop: "10px", marginLeft: "60px" }}>
-          party number: {event.host.party}
+          party size: {event.host.party}
         </p>
         {isHost && !user ? (
           <p>
-            Ontable:{" "}
+            Attendees:
             {hostEventmember.map(user => (
               <Popover
                 style={{ opcity: "0.5" }}
@@ -153,7 +153,7 @@ export default function ListCard({
                 key={user.id}
               >
                 <Avatar
-                  style={{ marginRight: "5px", cursor: "pointer" }}
+                  style={{ margin: "5px", cursor: "pointer" }}
                   size="medium"
                   icon="user"
                   src={user.avatar}
@@ -165,7 +165,7 @@ export default function ListCard({
         ) : null}
         {!isHost && !user ? (
           <p>
-            Ontable:{" "}
+            Attendees:
             {joinEventmember.map(user => (
               <Popover
                 style={{ opcity: "0.5" }}
@@ -174,7 +174,7 @@ export default function ListCard({
                 key={user.id}
               >
                 <Avatar
-                  style={{ marginRight: "5px", cursor: "pointer" }}
+                  style={{ margin: "5px", cursor: "pointer" }}
                   size="medium"
                   icon="user"
                   src={user.avatar}
@@ -195,12 +195,12 @@ export default function ListCard({
             >
               <Button
                 style={{
-                  marginLeft: "200px",
-                  marginBottom: "-25px",
+                  marginLeft: "161px",
+                  marginBottom: "-33px",
                   display: "inherit"
                 }}
               >
-                cancel
+                cancel event
               </Button>
             </Popconfirm>
           ) : null}

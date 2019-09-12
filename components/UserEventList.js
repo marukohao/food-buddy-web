@@ -46,13 +46,13 @@ export default function UserEventList() {
   return (
     <div className="container">
       <div className="host-container" style={{ marginRight: "40px" }}>
-        <h3>Upcoming Host list:</h3>
+        <h3>Future Hostings:</h3>
         {hostEvents.filter(
           event =>
             Date.parse(event.host.date + " " + event.host.time) >=
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="No Events" />
         ) : (
           hostEvents
             .filter(
@@ -70,13 +70,13 @@ export default function UserEventList() {
               />
             ))
         )}
-        <h3>Past Host list:</h3>
+        <h3>Past Hostings:</h3>
         {hostEvents.filter(
           event =>
             Date.parse(event.host.date + " " + event.host.time) <
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="No Events" />
         ) : (
           hostEvents
             .filter(
@@ -96,7 +96,7 @@ export default function UserEventList() {
         )}
       </div>
       <div className="joined-container">
-        <h3>Upcoming Joined list:</h3>
+        <h3>Upcoming Events:</h3>
         {joinedEvents.filter(
           event =>
             Date.parse(event.host.date + " " + event.host.time) >=
@@ -105,6 +105,7 @@ export default function UserEventList() {
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             style={{ marginLeft: "100px" }}
+            description="No Events"
           />
         ) : (
           joinedEvents
@@ -125,7 +126,7 @@ export default function UserEventList() {
               />
             ))
         )}
-        <h3>Past Joined list:</h3>
+        <h3>Past Events:</h3>
         {joinedEvents.filter(
           event =>
             Date.parse(event.host.date + " " + event.host.time) <
@@ -134,6 +135,7 @@ export default function UserEventList() {
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
             style={{ marginLeft: "100px" }}
+            description="No Events"
           />
         ) : (
           joinedEvents

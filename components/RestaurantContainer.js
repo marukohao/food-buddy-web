@@ -41,7 +41,7 @@ export default function RestaurantContainer() {
     <div className="outer-container">
       <Search
         className="search"
-        placeholder="input search text"
+        placeholder="Search restaurants..."
         onSearch={value => handleSearch(value)}
         style={{ width: 200, margin: "20px" }}
       />

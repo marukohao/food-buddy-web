@@ -148,6 +148,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
       <Content
         style={{ height: "70vh", backgroundColor: "white", overflow: "auto" }}
       >
+        <div className="message-layout">
         {messages.map(message => {
           return (
             <Comment
@@ -177,6 +178,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
             />
           );
         })}
+        </div>
       </Content>
       <Footer style={{ backgroundColor: "white" }}>
         <Form onSubmit={handleSubmit} style={{}}>
@@ -205,6 +207,11 @@ export default function MessagesContainer({ host, hosts, joins }) {
         // Layout {
         //   font-family: 'Righteous', cursive;
         // }
+        .message-layout {
+          display: flex;
+          flex-direction: column-reverse;
+          overflow-y: auto;
+        }
       `}</style>
     </Layout>
   );
