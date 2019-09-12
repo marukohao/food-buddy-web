@@ -2,11 +2,12 @@
   "name": "food-buddy-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "login.js",
+  "main": "index.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "heroku-postbuild": "next build"
   },
   "keywords": [],
   "author": "",
