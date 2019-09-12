@@ -3,8 +3,6 @@ const withLess = require("@zeit/next-less");
 const lessToJS = require("less-vars-to-js");
 const fs = require("fs");
 const path = require("path");
-const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
- 
 
 // Where your antd-custom.less file lives
 const themeVariables = lessToJS(
@@ -12,6 +10,7 @@ const themeVariables = lessToJS(
 );
 
 module.exports = withLess({
+  target: "serverless",
   lessLoaderOptions: {
     javascriptEnabled: true,
     modifyVars: themeVariables // make your antd custom effective
@@ -37,10 +36,6 @@ module.exports = withLess({
         use: "null-loader"
       });
     }
-
-    config.plugins = config.plugins || [];
-		config.plugins.push(new CaseSensitivePathsPlugin());
-
     return config;
   }
 });
