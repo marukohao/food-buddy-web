@@ -9,22 +9,6 @@ const themeVariables = lessToJS(
   fs.readFileSync(path.resolve(__dirname, "./assets/antd-custom.less"), "utf8")
 );
 
-module.exports = {
- webpack: function (config) {
-   if (ANALYZE) {
-     config.plugins.push(new BundleAnalyzerPlugin({
-       analyzerMode: 'server',
-       analyzerPort: 8888,
-       openAnalyzer: true
-     }))
-   }
-   return Object.assign({}, config, { entry: function() {
-     return config.entry().then((entry) => {
-       return Object.assign({}, entry, { '../static/worker.js': './Worker'})
-     })
-   }})
- }
-}
 
 module.exports = withLess({
   lessLoaderOptions: {
