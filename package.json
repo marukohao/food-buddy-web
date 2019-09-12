@@ -2,7 +2,7 @@
   "name": "food-buddy-frontend",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "login.js",
   "scripts": {
     "dev": "next",
     "build": "next build",
