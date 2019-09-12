@@ -45,8 +45,7 @@ export default function EventCard({ event, eventUser, joinUsers }) {
     <div>
       <Card
         style={{
-          width: 350,
-          margin: "20px",
+          margin: "20px 0",
           opacity: "0.85",
           borderRadius: "3px"
         }}

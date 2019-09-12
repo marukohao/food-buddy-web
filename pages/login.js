@@ -41,7 +41,6 @@ export default function Login() {
         className="login"
         style={{
           height: "100vh",
-          width: "100vw",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -109,11 +108,6 @@ export default function Login() {
              font-family: 'Lobster', cursive;
               font-size: 50px;
               opacity: 0.9;
-            }
-            .container {
-              // top: 40%;
-              // left: 40%;
-              // max-width: 400px;
             }
             input {
               height: 40px;

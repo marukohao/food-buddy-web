@@ -44,19 +44,12 @@ export default function MainpageEvents({ profile }) {
           width: 80%
           display: flex;
           flex-direction: column;
-          border-bottom: solid 1px lightgrey;
         }
         .container {
           margin: 40px 20px;
           display: flex;
           flex-direction: row;
           overflow: scroll;
-          // padding: 10px;
-        }
-        // @media (max-width: 480px) {
-        //   .container {
-        //     width: 195%;
-        //   }
         }
       `}</style>
     </div>

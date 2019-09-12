@@ -17,8 +17,7 @@ export default function RestaurantCard({ restaurant }) {
       hoverable
       style={{
         width: 280,
-        marginRight: "20px",
-        marginBottom: "20px",
+        marginBottom: "30px",
         boxShadow: "2px 2px 5px lightgrey"
       }}
       cover={

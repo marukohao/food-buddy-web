@@ -30,7 +30,12 @@ export default function MainpageRestaurants({ profile }) {
     <React.Fragment>
       <div className="container">
         {restaurantsToDisplay.map(restaurant => (
-          <RestaurantCard restaurant={restaurant} key={restaurant.id} />
+          <div className="card-container">
+            <RestaurantCard
+              restaurant={restaurant}
+              key={restaurant.id}
+            />
+          </div>
         ))}
       </div>
       <style jsx>{`
@@ -39,11 +44,9 @@ export default function MainpageRestaurants({ profile }) {
           overflow: auto;
           margin: 40px 20px;
         }
-        // @media (max-width: 480px) {
-        //   .container {
-        //     width: 195%;
-        //   }
-        // }
+        .card-container {
+          margin-right: 20px;
+        }
       `}</style>
     </React.Fragment>
   );

@@ -19,7 +19,6 @@ const CarouselTile = ({ url }) => (
 
 export default function Homepage() {
   const [profile, setProfile] = useState(null);
-  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     try {
@@ -33,16 +32,12 @@ export default function Homepage() {
     return null;
   }
 
-  // const handleSearch = value => {
-  //   console.log(value);
-  // };
-
   return (
     <Layouts style={{ fontFamily: `"Gill Sans", sans-serif` }}>
-      <h3 style={{ margin: "10px", color: "#5f5d5d", fontSize: "25px" }}>
+      <h3 style={{ margin: "20px", color: "#5f5d5d", fontSize: "25px" }}>
         Welcome {profile.username}
       </h3>
-      <h4 style={{ margin: "10px", color: "grey" }}>
+      <h4 style={{ margin: "20px", color: "grey" }}>
         Your location
         <Icon style={{ margin: "5px" }} type="environment" />
         {profile.location}

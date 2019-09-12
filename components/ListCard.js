@@ -111,17 +111,16 @@ export default function ListCard({
   const onClose = () => {
     setVisible(false);
   };
-  // console.log(joinUsers, hostUser);
+
   return (
     <div>
       <Card
         className="card"
         style={{
-          width: 320,
-          margin: "20px",
           opacity: "0.9",
-          boxShadow: "2px 2px 5px grey",
-          borderRadius: "3px"
+          boxShadow: "2px 2px 5px lightgrey",
+          borderRadius: "3px",
+          marginBottom: "15px"
         }}
       >
         {event.host.cancelled && isHost ? (
@@ -243,12 +242,12 @@ export default function ListCard({
         </div>
       </Card>
       <Drawer
+      width={350}
         title={"Event messages"}
         placement="right"
         closable={false}
         onClose={onClose}
         visible={visible}
-        width={350}
         style={{ height: "100vh" }}
       >
         <MessagesContainer

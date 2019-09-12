@@ -66,8 +66,6 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
     hiddenCreate();
   };
 
-  // add "you have already created a event on this date", calender default date is today's date
-
   return (
     <Drawer
       width={350}
@@ -98,7 +96,6 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
       </form>
       <style jsx>{`
         .outer-container {
-          width: 100vw;
           height: 100vh;
         }
         .container {

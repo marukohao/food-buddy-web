@@ -171,7 +171,6 @@ export default function Login() {
         }
         @media (max-width: 480px) {
           .signup {
-            width: 350px;
             padding: 50px;
           }
         }

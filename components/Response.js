@@ -7,7 +7,6 @@ export default function Response({ join, restaurantName, host }) {
   return (
     <Card
       style={{
-        width: 300,
         boxShadow: "2px 2px 5px lightgrey",
         opacity: "0.8",
         margin: "20px 0"

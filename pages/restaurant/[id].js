@@ -41,31 +41,25 @@ export default function Restaurant() {
 
   return (
     <Layouts>
-      {/* {clicked ? (
-        <CreateNewEvent
-          hiddenCreate={hiddenCreate}
-          createNewHost={createNewHost}
-          restaurant={restaurant}
-        />
-      ) : null} */}
       <div className="container">
-        <div className="card-button">
+        <div className="card-container">
           <Card
             hoverable
-            style={{ width: "90%" }}
             cover={<img alt="example" src={restaurant.image_url} />}
           >
             <Meta title={restaurant.name} description={restaurant.category} />
+            <div className="button-container">
+              <Button
+                style={{ width: "100%", borderRadius: 0, height: "50px", marginTop: "20px" }}
+                type="primary"
+                onClick={handleCreateClick}
+              >
+                New Table
+              </Button>
+            </div>
           </Card>
-          <Button
-            style={{ margin: "30px" }}
-            type="primary"
-            onClick={handleCreateClick}
-          >
-            New Table
-          </Button>
         </div>
-        <div>
+        <div className="host-event-container">
           <HostEvents restaurant={restaurant} createNew={createNew} />
         </div>
       </div>
@@ -77,17 +71,18 @@ export default function Restaurant() {
         />
       ) : null}
       <style jsx>{`
-        .container {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-around;
-          align-items: center;
-          margin: 20px;
-        }
-        .card-button {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        @media (min-width: 480px) {
+          .container {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+          .card-container {
+            width: 65%;
+          }
+          .host-event-container {
+            width: 35%;
+          }
         }
       `}</style>
     </Layouts>

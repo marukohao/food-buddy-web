@@ -36,7 +36,7 @@ export default function MainpageEventCard({ host }) {
         }}
       />
       <style jsx>{`
-        ."ant-card-meta-title {
+        .ant-card-meta-title {
           width: 100px;
         }
         img {

@@ -71,23 +71,29 @@ export default function NotificationList({
           background-size: cover;
           background-image: url(https://images.unsplash.com/photo-1517856497829-3047e3fffae1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80);
           display: flex;
-          flex-direction: row;
-          justify-content: space-around;
+          flex-direction: column;
           align-items: start;
         }
         .request-container,
         .response-container {
+          width: 100%;
           padding: 20px;
           height: 100%;
           display: flex;
           flex-direction: column;
+          max-width: 560px;
         }
         h3 {
           color: #a87d59;
         }
-        @media (max-width: 480px) {
+        @media (min-width: 480px) {
           .container {
-            flex-direction: column;
+            flex-direction: row;
+          }
+
+          .request-container,
+          .response-container {
+            padding: 30px 50px;
           }
         }
       `}</style>

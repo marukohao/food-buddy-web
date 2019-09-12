@@ -6,7 +6,7 @@ import moment from "moment";
 export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
   return (
     <div className="container">
-      <div className="host-container" style={{ marginRight: "40px" }}>
+      <div className="host-container">
         <h3>Upcoming Host list:</h3>
         {hostEvents.filter(
           event =>
@@ -15,7 +15,8 @@ export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
         ).length == 0 ? (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
-            style={{ marginLeft: "100px" }}
+            style={{ margin: "0 0 20px 20px", display: "flex" }}
+            description="No Events"
           />
         ) : (
           hostEvents
@@ -34,7 +35,7 @@ export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
         ).length == 0 ? (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
-            style={{ marginLeft: "100px" }}
+            style={{ margin: "0 0 20px 20px", display: "flex" }}
             description="No Events"
           />
         ) : (
@@ -56,7 +57,11 @@ export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
             Date.parse(event.host.date + " " + event.host.time) >=
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="No Events" />
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="No Events"
+            style={{ margin: "0 0 20px 20px", display: "flex" }}
+          />
         ) : (
           joinedEvents
             .filter(
@@ -79,7 +84,11 @@ export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
             Date.parse(event.host.date + " " + event.host.time) <
             Date.parse(moment())
         ).length == 0 ? (
-          <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description="No Events" />
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="No Events"
+            style={{ margin: "0 0 20px 20px", display: "flex" }}
+          />
         ) : (
           joinedEvents
             .filter(
@@ -98,29 +107,33 @@ export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
         )}
       </div>
       <style jsx>{`
-        .host-container {
-          height: 100vh;
-          overflow: scroll;
-          width: 400px;
-        }
+        .host-container,
         .joined-container {
-          height: 100vh;
-          overflow: scroll;
-          width: 400px;
+          padding: 20px 0;
+          overflow: auto;
+          width: 100%;
+          max-width: 400px;
         }
         .container {
           display: flex;
           flex-direction: row;
-          justify-content: space-around;
           align-items: start;
+          flex-direction: column;
         }
         h3 {
           padding: 20px;
           color: #cfcfcf;
         }
-        @media (max-width: 480px) {
+        @media (min-width: 480px) {
           .container {
-            flex-direction: column;
+            width: 100%;
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+          .host-container,
+          .joined-container {
+            height: 100%;
+            margin: 0 30px;
           }
         }
       `}</style>

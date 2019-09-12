@@ -199,18 +199,6 @@ export default function MessagesContainer({ host, hosts, joins }) {
           </Form.Item>
         </Form>
       </Footer>
-      <style>{`
-        // @import url('https://fonts.googleapis.com/css?family=Righteous&display=swap');
-        
-        // Layout {
-        //   font-family: 'Righteous', cursive;
-        // }
-        .message-layout {
-          display: flex;
-          flex-direction: column-reverse;
-          overflow-y: auto;
-        }
-      `}</style>
     </Layout>
   );
 }

@@ -72,7 +72,6 @@ export default function JoinCard({
   return (
     <Card
       style={{
-        width: 350,
         margin: "20px 0",
         boxShadow: "2px 2px 5px lightgrey",
         opacity: "0.8"

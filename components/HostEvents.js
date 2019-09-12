@@ -10,8 +10,6 @@ function HostEvents({ restaurant, events, setEvents }) {
 
   useEffect(() => {
     if (restaurant) {
-      let json = localStorage.getItem("data");
-      let jsonObj = JSON.parse(json);
       fetch(HOSTAPI, {
         method: "GET",
         headers: {
@@ -28,6 +26,7 @@ function HostEvents({ restaurant, events, setEvents }) {
         });
     }
   }, [restaurant]);
+
   const handleChange = value => {
     const selectDate = value.format("LL");
     setDate(selectDate);
@@ -47,7 +46,11 @@ function HostEvents({ restaurant, events, setEvents }) {
       <Calendar fullscreen={false} onChange={handleChange} />
       {!!eventsToDisplay ? (
         eventsToDisplay.length == 0 ? (
-          <Empty description="No Events" />
+          <Empty
+            image={Empty.PRESENTED_IMAGE_SIMPLE}
+            description="No Events"
+            style={{ margin: "0 0 20px 20px", display: "flex" }}
+          />
         ) : (
           eventsToDisplay.map(event => (
             <EventCard
@@ -61,9 +64,7 @@ function HostEvents({ restaurant, events, setEvents }) {
       ) : null}
       <style jsx>{`
         .container {
-          height: 100vh;
-          width: 420px;
-          overflow: scroll;
+          overflow: auto;
           padding: 20px;
         }
       `}</style>

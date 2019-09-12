@@ -38,21 +38,26 @@ export default function RestaurantContainer() {
 
   return (
     <div className="outer-container">
-      <Search
-        className="search"
-        placeholder="Search restaurants..."
-        onSearch={value => handleSearch(value)}
-        style={{ width: 200, margin: "20px" }}
-      />
+      <div className="search">
+        <Search
+          placeholder="Search restaurants..."
+          onSearch={value => handleSearch(value)}
+        />
+      </div>
       <div className="container">
         {restaurantsToDisplay.map(restaurant => (
-          <RestaurantCard restaurant={restaurant} key={restaurant.id} />
+          <div className="card-container">
+            <RestaurantCard restaurant={restaurant} key={restaurant.id} />
+          </div>
         ))}
       </div>
       <style jsx>{`
-        search {
+        .search {
           display: flex;
           justify-content: flex-end;
+          width: 88%;
+          max-width: 480px;
+          margin: 20px;
         }
         .outer-container {
           display: flex;
@@ -63,6 +68,17 @@ export default function RestaurantContainer() {
           flex-direction: row;
           justify-content: space-around;
           flex-wrap: wrap;
+          padding: 0 15px;
+        }
+
+        @media (min-width: 480px) {
+          .card-container {
+            margin-right: 10px;
+          }
+          .search {
+            margin: 40px;
+            width: 200px;
+          }
         }
       `}</style>
     </div>

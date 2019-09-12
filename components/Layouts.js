@@ -25,7 +25,7 @@ export default function Layouts(props) {
   const selectKey = [router.pathname];
 
   return (
-    <Layout>
+    <Layout style={{ height: "100vh" }}>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className="logo" />
         <h3
