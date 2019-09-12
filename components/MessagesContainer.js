@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
 import {
-  Card,
   Avatar,
   Input,
-  Button,
   Form,
   Comment,
   Tooltip,
@@ -149,35 +147,35 @@ export default function MessagesContainer({ host, hosts, joins }) {
         style={{ height: "70vh", backgroundColor: "white", overflow: "auto" }}
       >
         <div className="message-layout">
-        {messages.map(message => {
-          return (
-            <Comment
-              // actions={actions}
-              key={message.message.id}
-              author={
-                <a>
-                  {message.message.user_name == profile.username
-                    ? message.message.user_name + " (you)"
-                    : message.message.user_name}
-                </a>
-              }
-              avatar={
-                <Avatar
-                  src={message.message.user_avatar}
-                  alt={message.message.user_name}
-                />
-              }
-              content={<p>{message.message.message}</p>}
-              datetime={
-                <Tooltip>
-                  {/* {console.log(message.created_at)} */}
-                  {/* {console.log(time)} */}
-                  <span>{moment(message.created_at).fromNow()}</span>
-                </Tooltip>
-              }
-            />
-          );
-        })}
+          {messages.map(message => {
+            return (
+              <Comment
+                // actions={actions}
+                key={message.message.id}
+                author={
+                  <a>
+                    {message.message.user_name == profile.username
+                      ? message.message.user_name + " (you)"
+                      : message.message.user_name}
+                  </a>
+                }
+                avatar={
+                  <Avatar
+                    src={message.message.user_avatar}
+                    alt={message.message.user_name}
+                  />
+                }
+                content={<p>{message.message.message}</p>}
+                datetime={
+                  <Tooltip>
+                    {/* {console.log(message.created_at)} */}
+                    {/* {console.log(time)} */}
+                    <span>{moment(message.created_at).fromNow()}</span>
+                  </Tooltip>
+                }
+              />
+            );
+          })}
         </div>
       </Content>
       <Footer style={{ backgroundColor: "white" }}>

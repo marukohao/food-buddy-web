@@ -4,7 +4,13 @@ import { Card, Avatar, Button, notification } from "antd";
 const { Meta } = Card;
 const JOINAPI = "http://localhost:7777/joins";
 
-export default function JoinCard({ join, restaurantName, host, joinedNumber, reRender }) {
+export default function JoinCard({
+  join,
+  restaurantName,
+  host,
+  joinedNumber,
+  reRender
+}) {
   const [clicked, setClicked] = useState(false);
   const [accept, setAccept] = useState(false);
   const [decline, setDecline] = useState(false);
@@ -32,10 +38,10 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
             message: "you have accepted this request"
           });
         });
-    }else {
+    } else {
       notification["warning"]({
         message: "You have reached the maximum party number"
-      });      
+      });
     }
   };
 
@@ -73,17 +79,18 @@ export default function JoinCard({ join, restaurantName, host, joinedNumber, reR
       }}
     >
       <p>
-        <Avatar src={join.user.avatar} style={{ marginRight: "7px"}}/>
+        <Avatar src={join.user.avatar} style={{ marginRight: "7px" }} />
         {join.user.username} requests to join
       </p>
-      <Meta
-        title={restaurantName}
-        description={host.time + " " + host.date}
-      />
+      <Meta title={restaurantName} description={host.time + " " + host.date} />
       <p>party size: {host.party}</p>
       <p>open spots: {host.party - joinedNumber}</p>
-      {accept || join.join.joined ? <p style={{color: "green"}}>accepted</p> : null}
-      {decline || join.join.declined ? <p style={{color: "red"}}>declined</p> : null}
+      {accept || join.join.joined ? (
+        <p style={{ color: "green" }}>accepted</p>
+      ) : null}
+      {decline || join.join.declined ? (
+        <p style={{ color: "red" }}>declined</p>
+      ) : null}
       {clicked || join.join.joined || join.join.declined ? null : (
         <div>
           <Button

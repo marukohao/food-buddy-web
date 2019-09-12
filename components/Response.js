@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Card, Icon, Avatar, Button } from "antd";
+import { Card  } from "antd";
 
 const { Meta } = Card;
 

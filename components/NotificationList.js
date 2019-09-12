@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import JoinCard from "./JoinCard";
 import Response from "./Response";
-import { Card, Empty } from "antd";
-const { Meta } = Card;
 
 export default function NotificationList({
   responseJoins,

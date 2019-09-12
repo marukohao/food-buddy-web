@@ -5,7 +5,6 @@ import { Card, Avatar } from "antd";
 const { Meta } = Card;
 
 export default function MainpageEventCard({ host }) {
-
   const handleClick = () => {
     Router.push(`/restaurant/${host.restaurant.id}`);
     console.log(restaurant);

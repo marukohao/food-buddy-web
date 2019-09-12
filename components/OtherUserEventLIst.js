@@ -2,10 +2,8 @@ import React from "react";
 import ListCard from "./ListCard";
 import { Card, Empty } from "antd";
 import moment from "moment";
-const { Meta } = Card;
 
-export default function OtherUserEventList({hostEvents, joinedEvents, user}) {
-
+export default function OtherUserEventList({ hostEvents, joinedEvents, user }) {
   return (
     <div className="container">
       <div className="host-container" style={{ marginRight: "40px" }}>

@@ -24,10 +24,10 @@ export default function Notification() {
       })
         .then(resp => resp.json())
         .then(data => {
-          console.log(data)
+          console.log(data);
           setHosts(data);
         });
-      
+
       fetch(`http://localhost:7777/notification1`, {
         method: "GET",
         headers: {
@@ -38,20 +38,23 @@ export default function Notification() {
       })
         .then(resp => resp.json())
         .then(data => {
-          console.log(data)
+          console.log(data);
           setJoins(data);
         });
-
     } catch {}
   }, [render]);
 
   const reRender = () => {
-    setRender(!render)
-  }
+    setRender(!render);
+  };
 
   return (
-  <Layouts>
-    <NotificationList reRender={reRender} responseJoins={joins} requestJoins={hosts}/>
-  </Layouts>
+    <Layouts>
+      <NotificationList
+        reRender={reRender}
+        responseJoins={joins}
+        requestJoins={hosts}
+      />
+    </Layouts>
   );
 }

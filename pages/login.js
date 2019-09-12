@@ -5,7 +5,6 @@ import { Form, Icon, Input } from "antd";
 
 export default function Login() {
   const [failedLogin, setFailedLogin] = useState(false);
-  const [user, setUser] = useState({});
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -67,7 +66,7 @@ export default function Login() {
               User name doesn't match your password
             </p>
           ) : null}
-          <Form onSubmit={handleSubmit} style={{ borderRadiun: "3px"}}>
+          <Form onSubmit={handleSubmit} style={{ borderRadiun: "3px" }}>
             <p style={{ color: "white" }}>Please log in:</p>
             <Form.Item>
               <Input

@@ -3,7 +3,7 @@ import MainpageEventCard from "./MainpageEventCard";
 
 const HOSTSAPI = "http://localhost:7777/hostevents";
 
-export default function MainpageEvents({profile}) {
+export default function MainpageEvents({ profile }) {
   const [hosts, setHosts] = useState([]);
   // const [restaurantsToDisplay, setRestaurantsToDisplay] = useState([]);
 
@@ -16,10 +16,14 @@ export default function MainpageEvents({profile}) {
     })
       .then(res => res.json())
       .then(data => {
-        if(profile.location) {
-        const hostsByLocation = data.filter(host => host.restaurant.location.toLowerCase() == profile.location.toLowerCase())
-                console.log("check", hostsByLocation);
-        setHosts(hostsByLocation);
+        if (profile.location) {
+          const hostsByLocation = data.filter(
+            host =>
+              host.restaurant.location.toLowerCase() ==
+              profile.location.toLowerCase()
+          );
+          console.log("check", hostsByLocation);
+          setHosts(hostsByLocation);
         }
       });
   }, [profile]);

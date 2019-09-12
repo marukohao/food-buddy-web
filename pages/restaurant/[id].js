@@ -9,7 +9,6 @@ const { Meta } = Card;
 const RESTAURANTAPI = "http://localhost:7777/restaurants/";
 
 export default function Restaurant() {
-
   const [restaurant, setRestaurant] = useState({});
   const [clicked, setClicked] = useState(false);
   const [createNew, setCreateNew] = useState({});
@@ -26,19 +25,19 @@ export default function Restaurant() {
         .then(res => res.json())
         .then(data => setRestaurant(data));
     }
-    }, [router]);
+  }, [router]);
 
   const handleCreateClick = () => {
     setClicked(true);
-  }
+  };
 
   const hiddenCreate = () => {
     setClicked(false);
-  }
+  };
 
-  const createNewHost = (data) => {
-    setCreateNew(data)
-  } 
+  const createNewHost = data => {
+    setCreateNew(data);
+  };
 
   return (
     <Layouts>
@@ -58,7 +57,11 @@ export default function Restaurant() {
           >
             <Meta title={restaurant.name} description={restaurant.category} />
           </Card>
-          <Button style={{ margin: "30px"}} type="primary" onClick={handleCreateClick}>
+          <Button
+            style={{ margin: "30px" }}
+            type="primary"
+            onClick={handleCreateClick}
+          >
             New Table
           </Button>
         </div>

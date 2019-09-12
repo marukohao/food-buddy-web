@@ -7,14 +7,13 @@ const linkStyle = {
 };
 
 export default function Nav() {
-
-  const [logout, setLogout] = useState(false)
+  const [logout, setLogout] = useState(false);
 
   const handleClick = () => {
     localStorage.setItem("jwt", null);
     localStorage.setItem("data", null);
     setLogout(true);
-  }
+  };
 
   return (
     <div>
@@ -32,7 +31,4 @@ export default function Nav() {
       {logout ? Router.push("/login") : null}
     </div>
   );
-};
-
-
-
+}

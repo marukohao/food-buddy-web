@@ -1,21 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import Router from "next/router";
-import { Card, Icon, Avatar } from "antd";
+import { Card } from "antd";
 
 const { Meta } = Card;
 
-export default function RestaurantCard({restaurant}) {
+export default function RestaurantCard({ restaurant }) {
   // const [restaurants, setRestaurants] = useState([]);
 
   const handleClick = () => {
     Router.push(`/restaurant/${restaurant.id}`);
-    console.log(restaurant)
-  }
+    console.log(restaurant);
+  };
 
   return (
     <Card
       hoverable
-      style={{ width: 280, marginRight: "20px", marginBottom: "20px", boxShadow: "2px 2px 5px lightgrey" }}
+      style={{
+        width: 280,
+        marginRight: "20px",
+        marginBottom: "20px",
+        boxShadow: "2px 2px 5px lightgrey"
+      }}
       cover={
         <img alt="example" src={restaurant.image_url} onClick={handleClick} />
       }

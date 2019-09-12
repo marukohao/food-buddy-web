@@ -41,7 +41,7 @@ export default function UserEventList() {
 
   const reRender = () => {
     setRender(!render);
-  }
+  };
 
   return (
     <div className="container">

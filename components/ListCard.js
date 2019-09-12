@@ -11,7 +11,6 @@ import {
 } from "antd";
 import Router from "next/router";
 import MessagesContainer from "./MessagesContainer";
-import UserEventList from "./UserEventList";
 
 const { Meta } = Card;
 
@@ -93,20 +92,20 @@ export default function ListCard({
 
   const showDrawer = () => {
     setVisible(true);
-      if (notification) {
-        fetch("http://localhost:7777/notifications/" + notification.id, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("jwt")}`
-          },
-          body: JSON.stringify({
-            new: false
-          })
+    if (notification) {
+      fetch("http://localhost:7777/notifications/" + notification.id, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("jwt")}`
+        },
+        body: JSON.stringify({
+          new: false
         })
-          .then(resp => resp.json())
-          .then(data => setNotification(data.new));
-      }
+      })
+        .then(resp => resp.json())
+        .then(data => setNotification(data.new));
+    }
   };
 
   const onClose = () => {

@@ -8,7 +8,7 @@ const HOSTAPI = "http://localhost:7777/hosts";
 const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
   const [date, setDate] = useState(moment().format("LL"));
   const [inValidInput, setInValidInput] = useState(false);
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState(true);
 
   const onChange = value => {
     console.log(value.format("LL"));
@@ -55,7 +55,7 @@ const CreateNewEvent = ({ restaurant, hiddenCreate, addEvent, events }) => {
             message.success("A new event has been created");
           }
         });
-    }else {
+    } else {
       // console.log("failed")
       message.error("Please select a valid date or time");
     }

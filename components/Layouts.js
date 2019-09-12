@@ -7,7 +7,9 @@ import { useRouter } from "next/router";
 // const { SubMenu } = Menu;
 
 export default function Layouts(props) {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(
+    typeof window !== "undefined" && window.innerWidth < 480
+  );
   const router = useRouter();
 
   const handleClick = () => {
@@ -23,7 +25,7 @@ export default function Layouts(props) {
   const selectKey = [router.pathname];
 
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout>
       <Sider collapsible collapsed={collapsed} onCollapse={onCollapse}>
         <div className="logo" />
         <h3

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Router from "next/router";
 import Link from "next/link";
-import Avatar from "../components/Avatar"
+import Avatar from "../components/Avatar";
 import { Form, Icon, Input } from "antd";
 
 export default function Login() {
@@ -18,10 +18,10 @@ export default function Login() {
     setPreview(preview);
   };
 
-  const getAvatar = (imageUrl) => {
+  const getAvatar = imageUrl => {
     // console.log("get", imageUrl)
     setAvatarUrl(imageUrl);
-  }
+  };
 
   const handleSubmit = e => {
     e.preventDefault();

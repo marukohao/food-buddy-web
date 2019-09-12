@@ -8,7 +8,6 @@ const HOSTAPI = "http://localhost:7777/hosts";
 function HostEvents({ restaurant, events, setEvents }) {
   const [date, setDate] = useState();
 
-
   useEffect(() => {
     if (restaurant) {
       let json = localStorage.getItem("data");
@@ -22,7 +21,9 @@ function HostEvents({ restaurant, events, setEvents }) {
       })
         .then(res => res.json())
         .then(data => {
-          const availableHosts = data.filter(host => (host.joins.length + 1) < host.host.party)
+          const availableHosts = data.filter(
+            host => host.joins.length + 1 < host.host.party
+          );
           setEvents(availableHosts);
         });
     }
@@ -34,9 +35,11 @@ function HostEvents({ restaurant, events, setEvents }) {
 
   let eventsToDisplay = events;
   if (date) {
-    eventsToDisplay = events.filter(event => event.host.cancelled != true).filter(event => {
-      return date == event.host.date;
-    });
+    eventsToDisplay = events
+      .filter(event => event.host.cancelled != true)
+      .filter(event => {
+        return date == event.host.date;
+      });
   }
 
   return (
@@ -44,7 +47,7 @@ function HostEvents({ restaurant, events, setEvents }) {
       <Calendar fullscreen={false} onChange={handleChange} />
       {!!eventsToDisplay ? (
         eventsToDisplay.length == 0 ? (
-          <Empty description="No Events"/>
+          <Empty description="No Events" />
         ) : (
           eventsToDisplay.map(event => (
             <EventCard
