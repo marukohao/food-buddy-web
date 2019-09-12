@@ -32,6 +32,7 @@
     "redux-devtools-extension": "^2.13.8"
   },
   "devDependencies": {
+    "case-sensitive-paths-webpack-plugin": "^2.2.0",
     "redux-devtools": "^3.5.0"
   }
 }
