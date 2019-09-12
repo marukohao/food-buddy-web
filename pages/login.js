@@ -10,7 +10,7 @@ export default function Login() {
     e.preventDefault();
     const username = e.target.username.value.replace(/\s+$/, "");
     const password = e.target.password.value.replace(/\s+$/, "");
-    fetch("http://localhost:7777/login", {
+    fetch("https://share-table-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

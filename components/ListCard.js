@@ -45,7 +45,7 @@ export default function ListCard({
       let json = localStorage.getItem("data");
       let jsonObj = JSON.parse(json);
       setProfile(jsonObj);
-      fetch(`http://localhost:7777/notifications`, {
+      fetch(`https://share-table-backend.herokuapp.com/notifications`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -73,7 +73,7 @@ export default function ListCard({
   };
 
   const handleCancelClick = () => {
-    fetch("http://localhost:7777/hosts" + "/" + event.host.id, {
+    fetch("https://share-table-backend.herokuapp.com/hosts" + "/" + event.host.id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -93,7 +93,7 @@ export default function ListCard({
   const showDrawer = () => {
     setVisible(true);
     if (notification) {
-      fetch("http://localhost:7777/notifications/" + notification.id, {
+      fetch("https://share-table-backend.herokuapp.com/notifications/" + notification.id, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

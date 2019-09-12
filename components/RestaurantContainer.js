@@ -3,7 +3,7 @@ import RestaurantCard from "./RestaurantCard";
 import { Input } from "antd";
 
 const { Search } = Input;
-const RESTAURANTAPI = "http://localhost:7777/restaurants";
+const RESTAURANTAPI = "https://share-table-backend.herokuapp.com/restaurants";
 
 export default function RestaurantContainer() {
   const [restaurants, setRestaurants] = useState([]);

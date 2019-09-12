@@ -95,7 +95,7 @@ export default function Layouts(props) {
         body {
             // font-family: 'Josefin Sans', sans-serif;
             // font-family: 'Righteous', cursive;
-            // font-family: 'Hammersmith One', sans-serif;
+            font-family: 'Hammersmith One', sans-serif;
             // font-family: 'Fredericka the Great', cursive;
         }
         h2, h3 {

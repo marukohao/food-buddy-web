@@ -24,7 +24,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
       let jsonObj = JSON.parse(json);
       setProfile(jsonObj);
 
-      fetch(`http://localhost:7777/getmessages`, {
+      fetch(`https://share-table-backend.herokuapp.com/getmessages`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -44,7 +44,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
     e.preventDefault();
     console.log(e.target.input.value);
     const message = e.target.input.value;
-    fetch("http://localhost:7777/messages", {
+    fetch("https://share-table-backend.herokuapp.com/messages", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -65,7 +65,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
     if (hosts) {
       const hostMember = hosts.filter(user => user.id != profile.id);
       hostMember.forEach(user => {
-        fetch("http://localhost:7777/notifications", {
+        fetch("https://share-table-backend.herokuapp.com/notifications", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export default function MessagesContainer({ host, hosts, joins }) {
     } else {
       const joinMember = joins.filter(user => user.id != profile.id);
       joinMember.forEach(user => {
-        fetch("http://localhost:7777/notifications", {
+        fetch("https://share-table-backend.herokuapp.com/notifications", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

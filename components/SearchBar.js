@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Drawer } from "antd";
 import UserResultCard from "./UserResultCard";
-const USERAPI = "http://localhost:7777/users";
+const USERAPI = "https://share-table-backend.herokuapp.com/users";
 const { Search } = Input;
 
 export default function SearchBar() {

@@ -16,7 +16,7 @@ export default function UserEventList() {
       let jsonObj = JSON.parse(json);
       setProfile(jsonObj);
 
-      fetch(`http://localhost:7777/users/${jsonObj.id}`, {
+      fetch(`https://share-table-backend.herokuapp.com/users/${jsonObj.id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

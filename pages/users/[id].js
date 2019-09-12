@@ -5,7 +5,7 @@ import OtherUserEventList from "../../components/OtherUserEventList";
 import { Avatar, Card, Icon } from "antd";
 // import { responsiveArray } from "antd/lib/_util/responsiveObserve";
 
-const USERAPI = "http://localhost:7777/users/";
+const USERAPI = "https://share-table-backend.herokuapp.com/users/";
 
 export default function Users() {
   const [profile, setProfile] = useState("");

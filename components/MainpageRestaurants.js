@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import RestaurantCard from "./RestaurantCard";
 
-const RESTAURANTAPI = "http://localhost:7777/restaurants";
+const RESTAURANTAPI = "https://share-table-backend.herokuapp.com/restaurants";
 
 export default function MainpageRestaurants({ profile }) {
   const [restaurantsToDisplay, setRestaurantsToDisplay] = useState([]);

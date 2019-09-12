@@ -14,7 +14,7 @@ export default function Notification() {
       let jsonObj = JSON.parse(json);
       setProfile(jsonObj);
 
-      fetch(`http://localhost:7777/notification`, {
+      fetch(`https://share-table-backend.herokuapp.com/notification`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export default function Notification() {
           setHosts(data);
         });
 
-      fetch(`http://localhost:7777/notification1`, {
+      fetch(`https://share-table-backend.herokuapp.com/notification1`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

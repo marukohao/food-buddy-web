@@ -3,7 +3,7 @@ import { Card, Avatar, Button, message, Popover } from "antd";
 import Router from "next/router";
 
 const { Meta } = Card;
-const JOINAPI = "http://localhost:7777/joins";
+const JOINAPI = "https://share-table-backend.herokuapp.com/joins";
 
 export default function EventCard({ event, eventUser, joinUsers }) {
   let json = localStorage.getItem("data");

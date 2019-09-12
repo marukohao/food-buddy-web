@@ -3,7 +3,7 @@ import EventCard from "./EventCard";
 import { Calendar, Empty } from "antd";
 import { connect } from "react-redux";
 import { setEvents } from "../redux/action";
-const HOSTAPI = "http://localhost:7777/hosts";
+const HOSTAPI = "https://share-table-backend.herokuapp.com/hosts";
 
 function HostEvents({ restaurant, events, setEvents }) {
   const [date, setDate] = useState();

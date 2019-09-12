@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import MainpageEventCard from "./MainpageEventCard";
 
-const HOSTSAPI = "http://localhost:7777/hostevents";
+const HOSTSAPI = "https://share-table-backend.herokuapp.com/hostevents";
 
 export default function MainpageEvents({ profile }) {
   const [hosts, setHosts] = useState([]);

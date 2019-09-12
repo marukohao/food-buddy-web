@@ -25,7 +25,7 @@ export default function Profile() {
   const handleOk = e => {
     e.preventDefault();
     setVisible(false);
-    fetch("http://localhost:7777/users" + "/" + profile.id, {
+    fetch("https://share-table-backend.herokuapp.com/users" + "/" + profile.id, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

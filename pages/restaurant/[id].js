@@ -6,7 +6,7 @@ import CreateNewEvent from "../../components/CreateNewEvent";
 import { Card, Button } from "antd";
 
 const { Meta } = Card;
-const RESTAURANTAPI = "http://localhost:7777/restaurants/";
+const RESTAURANTAPI = "https://share-table-backend.herokuapp.com/restaurants/";
 
 export default function Restaurant() {
   const [restaurant, setRestaurant] = useState({});

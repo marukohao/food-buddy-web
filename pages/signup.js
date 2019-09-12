@@ -30,7 +30,7 @@ export default function Login() {
     const location = e.target.location.value.replace(/\s+$/, "");
     const bio = e.target.bio.value;
     // const avatar = e.target.avatar.value;
-    fetch("http://localhost:7777/users", {
+    fetch("https://share-table-backend.herokuapp.com/users", {
       method: "POST",
       headers: {
         Accept: "application/json",

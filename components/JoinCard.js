@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Card, Avatar, Button, notification } from "antd";
 
 const { Meta } = Card;
-const JOINAPI = "http://localhost:7777/joins";
+const JOINAPI = "https://share-table-backend.herokuapp.com/joins";
 
 export default function JoinCard({
   join,
